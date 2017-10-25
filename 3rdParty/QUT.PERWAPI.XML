@@ -1,0 +1,4159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QUT.PERWAPI</name>
+    </assembly>
+    <members>
+        <member name="T:QUT.PERWAPI.Class">
+            <summary>
+            The base descriptor for a class 
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Type">
+            <summary>
+            Base class for all IL types
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.MetaDataElement">
+            <summary>
+            Base class for all Meta Data table elements
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.TableRow">
+            <summary>
+            Abstract class to represent a row of the Meta Data Tables
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.TableRow.tabIx">
+            <summary>
+            The index of the Meta Data Table containing this element
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.TableRow.Row">
+            <summary>
+            The row number of this element in the Meta Data Table
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.MetaDataElement.customAttributes">
+            <summary>
+            The list of custom attributes associated with this meta data element
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.MetaDataElement.GetCustomAttributes">
+            <summary>
+            Get any custom attributes associated with this meta data element
+            </summary>
+            <returns>Array of custom attribute descriptors</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.MetaDataElement.SetCustomAttributes(QUT.PERWAPI.CustomAttribute[])">
+            <summary>
+            Associate some custom attribute(s) with this meta data element
+            </summary>
+            <param name="cas">list of custom attributes</param>
+        </member>
+        <member name="M:QUT.PERWAPI.MetaDataElement.AddCustomAttribute(QUT.PERWAPI.Method,System.Byte[])">
+            <summary>
+            Add a custom attribute to this item
+            </summary>
+            <param name="ctorMeth">the constructor method for this attribute</param>
+            <param name="val">the byte value of the parameters</param>
+        </member>
+        <member name="M:QUT.PERWAPI.MetaDataElement.AddCustomAttribute(QUT.PERWAPI.Method,QUT.PERWAPI.Constant[])">
+            <summary>
+            Add a custom attribute to this item
+            </summary>
+            <param name="ctorMeth">the constructor method for this attribute</param>
+            <param name="cVals">the constant values of the parameters</param>
+        </member>
+        <member name="M:QUT.PERWAPI.MetaDataElement.AddCustomAttribute(QUT.PERWAPI.CustomAttribute)">
+            <summary>
+            Associate a custom attribute with this meta data element
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.Type.typeSpecAdded">
+            <summary>
+            The following is only used for TypeSpecs and ClassSpecs. kjg
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.Name">
+            <summary>
+            Get the name of this class
+            </summary>
+            <returns>class name</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.NameSpace">
+            <summary>
+            Get the namespace that includes this class
+            </summary>
+            <returns>namespace name</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.TypeName">
+            <summary>
+            Get the string representation of the qualified name
+            of this class
+            </summary>
+            <returns>class qualified name</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.GetMethodDesc(System.String)">
+            <summary>
+            Get the descriptor for the method "name" of this class
+            </summary>
+            <param name="name">The name of the method to be retrieved</param>
+            <returns>The method descriptor for "name"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.GetMethodDesc(System.String,QUT.PERWAPI.Type[])">
+            <summary>
+            Get the descriptor for the method called "name" with the signature "parTypes"
+            </summary>
+            <param name="name">The name of the method</param>
+            <param name="parTypes">The signature of the method</param>
+            <returns>The method descriptor for name(parTypes)</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.GetMethodDesc(System.String,QUT.PERWAPI.Type[],QUT.PERWAPI.Type[])">
+            <summary>
+            Get the vararg method "name(parTypes,optTypes)" for this class
+            </summary>
+            <param name="name">Method name</param>
+            <param name="parTypes">Method parameter types</param>
+            <param name="optParTypes">Optional parameter types</param>
+            <returns>Descriptor for "name(parTypes,optTypes)"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.GetMethodDescs(System.String)">
+            <summary>
+            Get all the methods of this class called "name"
+            </summary>
+            <param name="name">The method name</param>
+            <returns>List of methods called "name"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.GetMethodDescs">
+            <summary>
+            Get all the methods for this class
+            </summary>
+            <returns>List of methods for this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.RemoveMethod(System.String)">
+            <summary>
+            Remove the specified method from this class
+            </summary>
+            <param name="name">method name</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.RemoveMethod(System.String,QUT.PERWAPI.Type[])">
+            <summary>
+            Remove the specified method from this class
+            </summary>
+            <param name="name">method name</param>
+            <param name="parTypes">method parameter types</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.RemoveMethod(System.String,QUT.PERWAPI.Type[],QUT.PERWAPI.Type[])">
+            <summary>
+            Remove the specified method from this class
+            </summary>
+            <param name="name">method name</param>
+            <param name="parTypes">method parameter types</param>
+            <param name="optTypes">optional method parameter types</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.RemoveMethod(QUT.PERWAPI.Method)">
+            <summary>
+            Remove the specified method from this class
+            </summary>
+            <param name="meth">method descriptor</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.RemoveMethod(System.Int32)">
+            <summary>
+            Remove the specified method from this class
+            </summary>
+            <param name="ix">index into list of methods for specified method</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.GetFieldDesc(System.String)">
+            <summary>
+            Get the descriptor for the field "name" for this class
+            </summary>
+            <param name="name">Field name</param>
+            <returns>Descriptor for field "name"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.GetFieldDescs">
+            <summary>
+            Get all the fields for this class
+            </summary>
+            <returns>List of fields for this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.RemoveField(System.String)">
+            <summary>
+            Remove the specified field from this class
+            </summary>
+            <param name="name">field name</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.Instantiate(QUT.PERWAPI.Type[])">
+            <summary>
+            Instantiate this generic type with the supplied types
+            </summary>
+            <param name="genTypes">types to instantiate with</param>
+            <returns>descriptor for instantiated generic type</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.MakeSpecial">
+            <summary>
+            Denote this class as "special" such as a default module class
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.GetParent">
+            <summary>
+            Get the owing scope of this class
+            </summary>
+            <returns>owner of this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.GetNestedClasses">
+            <summary>
+            Get any nested classes of this class
+            </summary>
+            <returns>list of nested classes</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Class.GetNestedClassCount">
+            <summary>
+            How many nested classes does this class have?
+            </summary>
+            <returns>number of nested classes</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.ClassSpec">
+            <summary>
+            
+            </summary> 
+        </member>
+        <member name="M:QUT.PERWAPI.ClassSpec.GetParent">
+            <summary>
+            Get the generic class that this is an instantiation of
+            </summary>
+            <returns>generic class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassSpec.GetGenericParamType(System.Int32)">
+            <summary>
+            Get the specified generic parameter number 
+            </summary>
+            <param name="ix">generic parameter number</param>
+            <returns>generic parameter number ix</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassSpec.GetGenericParamTypes">
+            <summary>
+            Get the generic parameters of this class
+            </summary>
+            <returns>list of generic parameters</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassSpec.GetGenericClass">
+            <summary>
+            Get the generic class that this class instantiates
+            </summary>
+            <returns>generic class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassSpec.GetGenericParCount">
+            <summary>
+            Count how many generic parameters this class has
+            </summary>
+            <returns>number of generic parameters</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.ConstructedTypeSpec">
+            <summary>
+            wrapper for TypeSpec parent of MethodRef or FieldRef
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.ResolutionScope">
+            <summary>
+            Base class for scopes (extended by Module, ModuleRef, Assembly, AssemblyRef)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.ResolutionScope.RemoveClass(QUT.PERWAPI.Class)">
+            <summary>
+            Delete a class from this module
+            </summary>
+            <param name="aClass">The name of the class to be deleted</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ResolutionScope.RemoveClass(System.Int32)">
+            <summary>
+            Delete the class at an index in the class array
+            </summary>
+            <param name="ix">The index of the class to be deleted (from 0)</param>
+        </member>
+        <member name="T:QUT.PERWAPI.ReferenceScope">
+            <summary>
+            A scope for descriptors which are referenced
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.ReferenceScope.defaultClass">
+            <summary>
+            A default class decriptor for globals
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.AddClass(QUT.PERWAPI.ClassRef)">
+            <summary>
+            Add a class to this Scope.  If this class already exists, throw
+            an exception
+            </summary>
+            <param name="newClass">The class to be added</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.AddClass(System.String,System.String)">
+            <summary>
+            Add a class to this Scope.  If the class already exists,
+            throw an exception.  
+            </summary>
+            <param name="nsName">name space name</param>
+            <param name="name">class name</param>
+            <returns>a descriptor for this class in another module</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.AddValueClass(System.String,System.String)">
+            <summary>
+            Add a value class to this scope.  If the class already exists,
+            throw an exception.  
+            </summary>
+            <param name="nsName">name space name</param>
+            <param name="name">class name</param>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.GetClass(System.String)">
+            <summary>
+            Get a class of this scope, if it exists.
+            </summary>
+            <param name="name">The name of the class.</param>
+            <returns>ClassRef for "name".</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.GetClass(System.String,System.String)">
+            <summary>
+            Get a class of this scope, if it exists.
+            </summary>
+            <param name="nsName">The namespace of the class.</param>
+            <param name="name">The name of the class.</param>
+            <returns>ClassRef for "nsName.name".</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.GetClasses">
+            <summary>
+            Get all the classes in this scope.
+            </summary>
+            <returns>An array of all the classes in this scope.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.AddMethod(System.String,QUT.PERWAPI.Type,QUT.PERWAPI.Type[])">
+            <summary>
+            Fetch a MethodRef descriptor for the method "retType name (pars)".
+            If one exists, it is returned, else one is created.
+            </summary>
+            <param name="name">method name</param>
+            <param name="retType">return type</param>
+            <param name="pars">method parameter types</param>
+            <returns>a descriptor for this method in anther module</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.AddVarArgMethod(System.String,QUT.PERWAPI.Type,QUT.PERWAPI.Type[],QUT.PERWAPI.Type[])">
+            <summary>
+            Fetch a MethodRef descriptor for the method "retType name (pars, optPars)".
+            If one exists, it is returned, else one is created.
+            </summary>
+            <param name="name">method name</param>
+            <param name="retType">return type</param>
+            <param name="pars">parameter types</param>
+            <param name="optPars">optional param types for this vararg method</param>
+            <returns>a descriptor for this method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.AddMethod(QUT.PERWAPI.MethodRef)">
+            <summary>
+            Add a method to this scope.
+            </summary>
+            <param name="meth">The method to be added.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.GetMethod(System.String)">
+            <summary>
+            Get a method of this scope, if it exists.
+            </summary>
+            <param name="name">The name of the method.</param>
+            <returns>MethodRef for "name", or null if none exists.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.GetMethods(System.String)">
+            <summary>
+            Get all the methods with a specified name in this scope.
+            </summary>
+            <param name="name">The name of the method(s).</param>
+            <returns>An array of all the methods called "name".</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.GetMethod(System.String,QUT.PERWAPI.Type[])">
+            <summary>
+            Get a method of this scope, if it exists.
+            </summary>
+            <param name="name">The name of the method</param>
+            <param name="parTypes">The signature of the method.</param>
+            <returns>MethodRef for name(parTypes).</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.GetMethod(System.String,QUT.PERWAPI.Type[],QUT.PERWAPI.Type[])">
+            <summary>
+            Get a vararg method of this scope, if it exists.
+            </summary>
+            <param name="name">The name of the method.</param>
+            <param name="parTypes">The signature of the method.</param>
+            <param name="optPars">The optional parameters of the vararg method.</param>
+            <returns>MethodRef for name(parTypes,optPars).</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.GetMethods">
+            <summary>
+            Get all the methods in this module
+            </summary>
+            <returns>Array of the methods of this module</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.RemoveMethod(QUT.PERWAPI.MethodRef)">
+            <summary>
+            Delete a method from this scope.
+            </summary>
+            <param name="meth">The method to be deleted.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.RemoveMethod(System.String)">
+            <summary>
+            Delete a method from this scope.  If there are multiple methods with
+            the same name, the first on the list will be deleted.
+            </summary>
+            <param name="name">The name of the method to delete.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.RemoveMethod(System.String,QUT.PERWAPI.Type[])">
+            <summary>
+            Delete a method from this scope.
+            </summary>
+            <param name="name">The name of the method to be deleted.</param>
+            <param name="parTypes">The signature of the method to be deleted.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.RemoveMethod(System.String,QUT.PERWAPI.Type[],QUT.PERWAPI.Type[])">
+            <summary>
+            Delete a (vararg) method from this scope.
+            </summary>
+            <param name="name">The name of the method to be deleted.</param>
+            <param name="parTypes">The signature of the method to be deleted.</param>
+            <param name="optTypes">The optional parameters of the vararg method.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.RemoveMethod(System.Int32)">
+            <summary>
+            Delete a method from this scope.
+            </summary>
+            <param name="index">The index of the method to be deleted.  Index
+            into array returned by GetMethods().</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.AddField(System.String,QUT.PERWAPI.Type)">
+            <summary>
+            Add a field to this scope.
+            </summary>
+            <param name="name">field name</param>
+            <param name="fType">field type</param>
+            <returns>a descriptor for the field "name" in this scope</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.AddField(QUT.PERWAPI.FieldRef)">
+            <summary>
+            Add a field to this scope.
+            </summary>
+            <param name="fld">The field to be added</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.AddFields(System.Collections.ArrayList)">
+            <summary>
+            Add a number of fields to this scope.
+            </summary>
+            <param name="flds">The fields to be added.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.GetField(System.String)">
+            <summary>
+            Fetch the FieldRef descriptor for the field "name" in this module, 
+            if one exists
+            </summary>
+            <param name="name">field name</param>
+            <returns>FieldRef descriptor for "name" or null</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ReferenceScope.GetFields">
+            <summary>
+            Get all the fields of this module
+            </summary>
+            <returns>Array of FieldRefs for this module</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.AssemblyRef">
+            <summary>
+            A reference to an external assembly (.assembly extern)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.AddVersionInfo(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Add version information about this external assembly
+            </summary>
+            <param name="majVer">Major Version</param>
+            <param name="minVer">Minor Version</param>
+            <param name="bldNo">Build Number</param>
+            <param name="revNo">Revision Number</param>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.MajorVersion">
+            <summary>
+            Get the major version for this external assembly
+            </summary>
+            <returns>major version number</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.MinorVersion">
+            <summary>
+            Get the minor version for this external assembly
+            </summary>
+            <returns>minor version number</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.BuildNumber">
+            <summary>
+            Get the build number for this external assembly
+            </summary>
+            <returns>build number</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.RevisionNumber">
+            <summary>
+            Get the revision number for this external assembly
+            </summary>
+            <returns>revision number</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.HasVersionInfo">
+            <summary>
+            Check if this external assembly has any version information
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.AddHash(System.Byte[])">
+            <summary>
+            Add the hash value for this external assembly
+            </summary>
+            <param name="hash">bytes of the hash value</param>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.GetHash">
+            <summary>
+            Get the hash value for this external assembly
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.AddCulture(System.String)">
+            <summary>
+            Set the culture for this external assembly
+            </summary>
+            <param name="cult">the culture string</param>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.AddKey(System.Byte[])">
+            <summary>
+            Add the full public key for this external assembly
+            </summary>
+            <param name="key">bytes of the public key</param>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.AddKeyToken(System.Byte[])">
+            <summary>
+            Add the public key token (low 8 bytes of the public key)
+            </summary>
+            <param name="key">low 8 bytes of public key</param>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.GetKey">
+            <summary>
+            Get the public key token
+            </summary>
+            <returns>bytes of public key</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.AssemblyRef.MakeAssemblyRef(System.String)">
+            <summary>
+            Make an AssemblyRef for "name".  
+            </summary>
+            <param name="name">The name of the assembly</param>
+            <returns>AssemblyRef for "name".</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.MSCorLib">
+            <summary>
+            The assembly for mscorlib.  
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.ModuleRef">
+            <summary>
+            Descriptor for a module in an assembly
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.ModuleRef.AddExternClass(QUT.PERWAPI.TypeAttr,System.String,System.String,System.Boolean,QUT.PERWAPI.PEFile)">
+            <summary>
+            Add a class which is declared public in this external module of
+            THIS assembly.  This class will be exported from this assembly.
+            The ilasm syntax for this is .extern class
+            </summary>
+            <param name="attrSet">attributes of the class to be exported</param>
+            <param name="nsName">name space name</param>
+            <param name="name">external class name</param>
+            <param name="declFile">the file where the class is declared</param>
+            <param name="isValueClass">is this class a value type?</param>
+            <returns>a descriptor for this external class</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.Local">
+            <summary>
+            Descriptor for a local of a method
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Local.#ctor(System.String,QUT.PERWAPI.Type)">
+            <summary>
+            Create a new local variable 
+            </summary>
+            <param name="lName">name of the local variable</param>
+            <param name="lType">type of the local variable</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Local.#ctor(System.String,QUT.PERWAPI.Type,System.Boolean)">
+            <summary>
+            Create a new local variable that is byref and/or pinned
+            </summary>
+            <param name="lName">local name</param>
+            <param name="lType">local type</param>
+            <param name="isPinned">has pinned attribute</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Local.GetSig">
+            <summary>
+            Gets the signature for this local variable.
+            </summary>
+            <returns>A byte array of the signature.</returns>
+        </member>
+        <member name="P:QUT.PERWAPI.Local.Name">
+            <summary>
+            The name of the local variable.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.CILInstructions">
+            <summary>
+            The IL instructions for a method
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CILInstructions.ReturnsVoid">
+            <summary>
+            Shows if return statements in this code block require a value on the stack or not.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.NumInstructions">
+            <summary>
+            The number of instructions currently in the buffer. 
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.GetNextInstruction">
+            <summary>
+            Get the next instruction in the instruction buffer in sequence.  
+            An internal index is kept to keep track of which instruction was the last
+            retrieved by this method.  On the first call, the first instruction in 
+            the buffer is retrieved.  The instruction index may be zeroed 
+            using ResetInstCounter().  This method cannot be called when in "insert" mode.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.GetPrevInstruction">
+            <summary>
+            Get the previous instruction in the instruction buffer in sequence.  
+            An internal index is kept to keep track of which instruction was the last
+            retrieved by this method. This method cannot be called when in "insert" mode.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.ResetInstCounter">
+            <summary>
+            Reset the counter for GetNextInstuction to the first instruction.
+            This method cannot be called when in "insert" mode.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.EndInstCounter">
+            <summary>
+            Reset the counter for GetNextInstuction to the first instruction.
+            This method cannot be called when in "insert" mode.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.GetInstructions">
+            <summary>
+            Get all the IL instructions.
+            This method cannot be called when in "insert" mode.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.SetInstructions(QUT.PERWAPI.CILInstruction[])">
+            <summary>
+            Set the instruction to be the new array of instructions, this will replace
+            any existing instructions.  This method cannot be called when in "insert" mode.
+            </summary>
+            <param name="insts">The new instructions</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.StartInsert">
+            <summary>
+            This method should only be used to insert instructions into a buffer which 
+            already contains some instructions.
+            Start inserting instructions into the instruction buffer ie. set the buffer
+            to "insert" mode.  The position of the insertion will be directly after 
+            the "current instruction" as used be GetNextInstruction().  The 
+            instructions to be inserted are any calls to the instruction specific 
+            methods - Inst, TypeInst, MethodInst, etc.
+            This method cannot be called if already in "insert" mode.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.EndInsert">
+            <summary>
+            Stop inserting instructions into the buffer.  Any instructions added after 
+            this call will go at the end of the instruction buffer.  
+            To be used with StartInsert().
+            This method cannot be called if not in "insert" mode.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.InInsertMode">
+            <summary>
+            Check if the buffer is ready for insertion of extra instructions.
+            The buffer only needs to be in insert mode when instructions need
+            to be added to existing instructions, not for addition of instructions
+            to the end of the buffer.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.RemoveInstruction(System.Int32)">
+            <summary>
+            Remove the instruction at a specified position from the buffer.  If you 
+            remove the "current" instruction (from GetNext or GetPrev) then the
+            "current" instruction becomes the instruction before that in the buffer.
+            </summary>
+            <param name="pos">position of the instruction to be removed</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.RemoveInstructions(System.Int32,System.Int32)">
+            <summary>
+            Remove the instructions from position "startRange" to (and including)
+            position "endRange" from the buffer.  If the range removed contains the
+            "current" instruction (from GetNext or GetPrev) then the "current" 
+            instruction becomes the instruction before startRange in the buffer.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.ReplaceInstruction(System.Int32)">
+            <summary>
+            Replace a single IL instruction at position pos in the buffer 
+            with some new instruction(s).  This removes the instruction and puts 
+            the instruction buffer into "insert" mode at the position of the removed 
+            instruction.  EndInsert must be called to insert the new instructions.
+            This method cannot be called when in "insert" mode.
+            </summary>
+            <param name="pos">position of the instruction to be replaced</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.ReplaceInstruction(System.Int32,System.Int32)">
+            <summary>
+            Replace a number of IL instructions beginning at position pos in the buffer 
+            with some new instruction(s).  This removes the instructions and puts 
+            the instruction buffer into "insert" mode at the position of the removed 
+            instructions.  EndInsert must be called to insert the new instructions.
+            The instructions from index "from" up to and including index "to" will
+            be replaced by the new instructions entered.
+            This method cannot be called when in "insert" mode.
+            </summary>
+            <param name="from">the index to start replacing instruction from</param>
+            <param name="to">the last index of the instructions to be replaced</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.Inst(QUT.PERWAPI.Op)">
+            <summary>
+            Add a simple IL instruction
+            </summary>
+            <param name="inst">the IL instruction</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.IntInst(QUT.PERWAPI.IntOp,System.Int32)">
+            <summary>
+            Add an IL instruction with an integer parameter
+            </summary>
+            <param name="inst">the IL instruction</param>
+            <param name="val">the integer parameter value</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.ldc_i8(System.Int64)">
+            <summary>
+            Add the load long instruction
+            </summary>
+            <param name="cVal">the long value</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.ldc_r4(System.Single)">
+            <summary>
+            Add the load float32 instruction
+            </summary>
+            <param name="cVal">the float value</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.ldc_r8(System.Double)">
+            <summary>
+            Add the load float64 instruction
+            </summary>
+            <param name="cVal">the float value</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.ldstr(System.String)">
+            <summary>
+            Add the load string instruction
+            </summary>
+            <param name="str">the string value</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.calli(QUT.PERWAPI.CalliSig)">
+            <summary>
+            Add the calli instruction
+            </summary>
+            <param name="sig">the signature for the calli</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.NewLabel">
+            <summary>
+            Create a new CIL label.  To place the label in the CIL instruction
+            stream use CodeLabel.
+            </summary>
+            <returns>a new CIL label</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.NewCodedLabel">
+            <summary>
+            Create a new label at this position in the code buffer
+            </summary>
+            <returns>the label at the current position</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.CodeLabel(QUT.PERWAPI.CILLabel)">
+            <summary>
+            Add a label to the CIL instructions
+            </summary>
+            <param name="lab">the label to be added</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.FieldInst(QUT.PERWAPI.FieldOp,QUT.PERWAPI.Field)">
+            <summary>
+            Add an instruction with a field parameter
+            </summary>
+            <param name="inst">the CIL instruction</param>
+            <param name="f">the field parameter</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.MethInst(QUT.PERWAPI.MethodOp,QUT.PERWAPI.Method)">
+            <summary>
+            Add an instruction with a method parameter
+            </summary>
+            <param name="inst">the CIL instruction</param>
+            <param name="m">the method parameter</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.TypeInst(QUT.PERWAPI.TypeOp,QUT.PERWAPI.Type)">
+            <summary>
+            Add an instruction with a type parameter
+            </summary>
+            <param name="inst">the CIL instruction</param>
+            <param name="aType">the type argument for the CIL instruction</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.Branch(QUT.PERWAPI.BranchOp,QUT.PERWAPI.CILLabel)">
+            <summary>
+            Add a branch instruction
+            </summary>
+            <param name="inst">the branch instruction</param>
+            <param name="lab">the label that is the target of the branch</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.Switch(QUT.PERWAPI.CILLabel[])">
+            <summary>
+            Add a switch instruction
+            </summary>
+            <param name="labs">the target labels for the switch</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.emitbyte(System.Byte)">
+            <summary>
+            Add a byte to the CIL instructions (.emitbyte)
+            </summary>
+            <param name="bVal"></param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.PushInt(System.Int32)">
+            <summary>
+            Add an instruction which puts an integer on TOS.  This method
+            selects the correct instruction based on the value of the integer.
+            </summary>
+            <param name="i">the integer value</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.PushLong(System.Int64)">
+            <summary>
+            Add the instruction to load a long on TOS
+            </summary>
+            <param name="l">the long value</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.PushTrue">
+            <summary>
+            Add an instruction to push the boolean value true on TOS
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.PushFalse">
+            <summary>
+             Add an instruction to push the boolean value false on TOS
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.LoadArg(System.Int32)">
+            <summary>
+            Add the instruction to load an argument on TOS.  This method
+            selects the correct instruction based on the value of argNo
+            </summary>
+            <param name="argNo">the number of the argument</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.LoadArgAdr(System.Int32)">
+            <summary>
+            Add the instruction to load the address of an argument on TOS.
+            This method selects the correct instruction based on the value
+            of argNo.
+            </summary>
+            <param name="argNo">the number of the argument</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.LoadLocal(System.Int32)">
+            <summary>
+            Add the instruction to load a local on TOS.  This method selects
+            the correct instruction based on the value of locNo.
+            </summary>
+            <param name="locNo">the number of the local to load</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.LoadLocalAdr(System.Int32)">
+            <summary>
+            Add the instruction to load the address of a local on TOS.
+            This method selects the correct instruction based on the 
+            value of locNo.
+            </summary>
+            <param name="locNo">the number of the local</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.StoreArg(System.Int32)">
+            <summary>
+            Add the instruction to store to an argument.  This method
+            selects the correct instruction based on the value of argNo.
+            </summary>
+            <param name="argNo">the argument to be stored to</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.StoreLocal(System.Int32)">
+            <summary>
+            Add the instruction to store to a local.  This method selects
+            the correct instruction based on the value of locNo.
+            </summary>
+            <param name="locNo">the local to be stored to</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.IntLine(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            CLS compliant version of Line()
+            </summary>
+            <param name="sLin">The start line</param>
+            <param name="sCol">The start column</param>
+            <param name="eLin">The end line</param>
+            <param name="eCol">The end column</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.Line(System.UInt32,System.UInt32)">
+            <summary>
+            Create a new line instruction.
+            </summary>
+            <param name="num">The line for the given code segment.</param>
+            <param name="startCol">The starting column for the code segment.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.Line(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Create a new line instruction.
+            </summary>
+            <param name="num">The line for the given code segment.</param>
+            <param name="startCol">The starting column for the code segment.</param>
+            <param name="endCol">The ending column for the code segment.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.Line(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Create a new line instruction.
+            </summary>
+            <param name="startNum">The starting line for the code segment.</param>
+            <param name="startCol">The starting column for the code segment.</param>
+            <param name="endNum">The ending line for the code segment.</param>
+            <param name="endCol">The ending column for the code segment.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.Line(System.UInt32,System.UInt32,System.UInt32,System.UInt32,QUT.PERWAPI.SourceFile)">
+            <summary>
+            Create a new line instruction.
+            </summary>
+            <param name="startNum">The starting line for the code segment.</param>
+            <param name="startCol">The starting column for the code segment.</param>
+            <param name="endNum">The ending line for the code segment.</param>
+            <param name="endCol">The ending column for the code segment.</param>
+            <param name="sFile">The source file for the given code segment.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.OpenScope">
+            <summary>
+            Open a new scope.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.CloseScope">
+            <summary>
+            Close the current scope.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.BindLocal(System.String,System.Int32)">
+            <summary>
+            Bind a local to the CIL instructions.
+            </summary>
+            <param name="name">The name of the local variable..</param>
+            <param name="index">The index of the local variable.</param>
+            <returns>The LocalBinding object created with the given values.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.BindLocal(QUT.PERWAPI.Local)">
+            <summary>
+            Bind a local to the CIL instructions.
+            </summary>
+            <param name="local">The local variable to load.</param>
+            <returns>The LocalBinding object created for the given Local object.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.BindConstant(System.String,System.Object,QUT.PERWAPI.Type)">
+            <summary>
+            Bind a constant to the CIL instructions.
+            </summary>
+            <param name="name">The name of the constant.</param>
+            <param name="value">The value of the constant.</param>
+            <param name="type">The type of the constant.</param>
+            <returns>Return the ConstantBinding created with the given values.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.StartBlock">
+            <summary>
+            Mark this position as the start of a new block
+            (try, catch, filter, finally or fault)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.EndTryBlock">
+            <summary>
+            Mark this position as the end of the last started block and
+            make it a try block.  This try block is added to the current 
+            instructions (ie do not need to call AddTryBlock)
+            </summary>
+            <returns>The try block just ended</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.EndCatchBlock(QUT.PERWAPI.Class,QUT.PERWAPI.TryBlock)">
+            <summary>
+            Mark this position as the end of the last started block and
+            make it a catch block.  This catch block is associated with the
+            specified try block.
+            </summary>
+            <param name="exceptType">the exception type to be caught</param>
+            <param name="tryBlock">the try block associated with this catch block</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.EndFilterBlock(QUT.PERWAPI.CILLabel,QUT.PERWAPI.TryBlock)">
+            <summary>
+            Mark this position as the end of the last started block and
+            make it a filter block.  This filter block is associated with the
+            specified try block.  The format is:
+            filterLab:   ...
+                         ...
+            filterHandler :  ...
+                             ...             
+            </summary>
+            <param name="filterLab">the label where the filter code is</param>
+            <param name="tryBlock">the try block associated with this filter block</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.EndFinallyBlock(QUT.PERWAPI.TryBlock)">
+            <summary>
+            Mark this position as the end of the last started block and
+            make it a finally block.  This finally block is associated with the
+            specified try block.
+            </summary>
+            <param name="tryBlock">the try block associated with this finally block</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.EndFaultBlock(QUT.PERWAPI.TryBlock)">
+            <summary>
+            Mark this position as the end of the last started block and
+            make it a fault block.  This fault block is associated with the
+            specified try block.
+            </summary>
+            <param name="tryBlock">the try block associated with this fault block</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.GetMaxStackDepthRequired">
+            <summary>
+            Returns the maximum stack depth required by these CIL instructions.
+            </summary>
+            <returns>The integer value of the stck depth.</returns>
+        </member>
+        <member name="P:QUT.PERWAPI.CILInstructions.DefaultSourceFile">
+            <summary>
+            The source file containing these IL instructions
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.CILInstructions.CurrentScope">
+            <summary>
+            The current scope.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.CILInstructions.CodeBlock">
+            <summary>
+            Stores the details of a given code block
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstructions.CodeBlock.#ctor(QUT.PERWAPI.CILInstructions)">
+            <summary>
+            Create a new code block definition
+            </summary>
+            <param name="instructions">The buffer the code block relates to</param>
+        </member>
+        <member name="T:QUT.PERWAPI.CILInstruction">
+            <summary>
+            Descriptor for an IL instruction
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CILInstruction.FEopcode">
+            <summary>
+            A list of the delta distances for the given CIL instructions.
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CILInstruction.FEopDeltaDistance">
+            <summary>
+            A list of the delta distances for the given FE CIL instructions.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CILInstruction.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>An integer value representing the delta distance.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CILByte.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>Zero, the delta distance for a CILByte</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Instr.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>An integer value representing the delta distance.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.IntInstr.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>An integer value representing the delta distance.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.UIntInstr.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>An integer value representing the delta distance.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CILLabel.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>An integer value representing the delta distance.</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.DebugInst">
+            <summary>
+            Abstract model for debug instructions.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Line">
+            <summary>
+            Defines a line instruction.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Line.#ctor(System.UInt32,System.UInt32,QUT.PERWAPI.SourceFile)">
+            <summary>
+            Create a new line instruction.
+            </summary>
+            <param name="sLine">Start of the line in the source file.</param>
+            <param name="sCol">Starting column in the source file.</param>
+            <param name="sFile">The filename of the souce file.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Line.#ctor(System.UInt32,System.UInt32,System.UInt32,System.UInt32,QUT.PERWAPI.SourceFile)">
+            <summary>
+            Create a new line instruction.
+            </summary>
+            <param name="sLine">Start of the line in the source file.</param>
+            <param name="sCol">Starting column in the source file.</param>
+            <param name="eLine">Ending line in the source file.</param>
+            <param name="eCol">Ending column in the source file.</param>
+            <param name="sFile">The filename of the souce file.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Line.GetInstName">
+            <summary>
+            Get the name of this instruction.
+            </summary>
+            <returns>A string with the value ".line".</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Line.Write(QUT.PERWAPI.PEWriter)">
+            <summary>
+            Write this instruction to a PDB file.
+            </summary>
+            <param name="output">The PE writer being used to write the PE and PDB files.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Line.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>An integer value representing the delta distance.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Line.Write(QUT.PERWAPI.CILWriter)">
+            <summary>
+            Write out a line instruction to the CIL file.
+            </summary>
+            <param name="output">The CIL instruction writer to use to write this instruction.</param>
+        </member>
+        <member name="T:QUT.PERWAPI.LocalBinding">
+            <summary>
+            A local binding instruction that can be added to a list of CILInstructions.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.LocalBinding.#ctor(System.Int32,System.String)">
+            <summary>
+            Create a new local binding object.
+            </summary>
+            <param name="index">The index of the local in the locals tables.</param>
+            <param name="name">The name of the local.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.LocalBinding.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>An integer value representing the delta distance.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.LocalBinding.GetInstName">
+            <summary>
+            Get the name of this instruction.
+            </summary>
+            <returns>A string with the name of this instruction.</returns>
+        </member>
+        <member name="P:QUT.PERWAPI.LocalBinding.Index">
+            <summary>
+            The index of the local in the locals table.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.LocalBinding.Name">
+            <summary>
+            The name of the local binding.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.ConstantBinding">
+            <summary>
+            Used to declare constants that exist in a given scope.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.ConstantBinding.#ctor(System.String,System.Object,QUT.PERWAPI.Type,System.UInt32)">
+            <summary>
+            Create a new constant binding.
+            </summary>
+            <param name="name">The name of the constant.</param>
+            <param name="value">The value of the constant.</param>
+            <param name="type">The data type of the constant.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ConstantBinding.GetSig">
+            <summary>
+            Get the type signature for this constant.
+            </summary>
+            <returns>A byte array of the type signature.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ConstantBinding.GetInstName">
+            <summary>
+            Get the name of this instruction.
+            </summary>
+            <returns>A string with the name of this instruction.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ConstantBinding.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>An integer value representing the delta distance.</returns>
+        </member>
+        <member name="P:QUT.PERWAPI.ConstantBinding.Value">
+            <summary>
+            Value of the constant.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.ConstantBinding.Name">
+            <summary>
+            The name of the constant.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.ConstantBinding.Type">
+            <summary>
+            The data type of the constant.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.ConstantBinding.Token">
+            <summary>
+            The token for this constant.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Scope.AddConstantBinding(System.String,System.Object,QUT.PERWAPI.Type)">
+            <summary>
+            Add a constant to this scope.
+            </summary>
+            <param name="name">The name of the constant.</param>
+            <param name="value">The value of the constant.</param>
+            <param name="type">The type of the constant.</param>
+            <returns>The ConstantBinding object for the new constant.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Scope.FindConstantBinding(System.String)">
+            <summary>
+            Find a constant in this scope.
+            </summary>
+            <param name="name">The name of the constant.</param>
+            <returns>The ConstantBinding object of this constant.</returns>
+        </member>
+        <member name="P:QUT.PERWAPI.Scope.ConstantBindings">
+            <summary>
+            Provide a complete list of all constants bound in this scope.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.OpenScope">
+            <summary>
+            A marker instruction for when a scope should be opened in the sequence of instructions.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.OpenScope.#ctor(QUT.PERWAPI.Scope)">
+            <summary>
+            Create a new OpenScope instruction.
+            </summary>
+            <param name="scope">The scope that is being opened.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.OpenScope.GetInstName">
+            <summary>
+            Get the name for this instruction.
+            </summary>
+            <returns>A string with the name of the instruction.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.OpenScope.BuildSignatures(QUT.PERWAPI.MetaDataOut)">
+            <summary>
+            Build the signatures for this instruction.
+            </summary>
+            <param name="md">The meta data table to write the instructions to.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.OpenScope.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>An integer value representing the delta distance.</returns>
+            
+        </member>
+        <member name="M:QUT.PERWAPI.OpenScope.Write(QUT.PERWAPI.PEWriter)">
+            <summary>
+            Write this instruction to the PDB file.
+            </summary>
+            <param name="output">The PEWriter being used to write the PE and PDB files.</param>
+        </member>
+        <member name="T:QUT.PERWAPI.CloseScope">
+            <summary>
+            A marker instruction for when a scope should be closed.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CloseScope.#ctor(QUT.PERWAPI.Scope)">
+            <summary>
+            The constructor to build a new CloseScope instruction.
+            </summary>
+            <param name="scope">The scope to close.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CloseScope.GetInstName">
+            <summary>
+            Provide access to the name of this instruction.
+            </summary>
+            <returns>A string containing the name of this instruction.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CloseScope.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>An integer value representing the delta distance.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CloseScope.Write(QUT.PERWAPI.PEWriter)">
+            <summary>
+            Write this instruction.  This instruction does not get written
+            to the PE file.  It only applys to the PDB file.
+            </summary>
+            <param name="output">The PEWriter that is writing the PE file.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.MethInstr.GetMethodOp">
+            <summary>
+            Get the MethodOp this instruction represents.
+            </summary>
+            <returns>The method operator from the MethodOp enum.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.MethInstr.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>An integer value representing the delta distance.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.SigInstr.GetDeltaDistance">
+            <summary>
+            Get the delta distance for this instruction.
+            </summary>
+            <remarks>
+            The delta distance is the resulting difference of items 
+            left on the stack after calling this instruction.
+            </remarks>
+            <returns>An integer value representing the delta distance.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.BranchInstr.GetBranchOp">
+            <summary>
+            Provide access to the branch operator
+            </summary>
+            <returns>The branch operator from the BranchOp enum that this instruction represents.</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.NativeType">
+            <summary>
+            Descriptors for native types used for marshalling
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.MethSig.HasCallConv(QUT.PERWAPI.CallConv)">
+            <summary>
+            Check to see if the method signature has a particular calling convention.
+            </summary>
+            <param name="callCon">The convention to check to see if the method has.</param>
+            <returns>Ture if the calling convention exists on the method.</returns>
+        </member>
+        <member name="P:QUT.PERWAPI.CodeBlock.Start">
+            <summary>
+            The label that marks the start of this code block
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.CodeBlock.End">
+            <summary>
+            The label that marks the end of this code block
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.TryBlock">
+            <summary>
+            The descriptor for a guarded block (.try)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.TryBlock.#ctor(QUT.PERWAPI.CILLabel,QUT.PERWAPI.CILLabel)">
+            <summary>
+            Create a new try block
+            </summary>
+            <param name="start">start label for the try block</param>
+            <param name="end">end label for the try block</param>
+        </member>
+        <member name="M:QUT.PERWAPI.TryBlock.AddHandler(QUT.PERWAPI.HandlerBlock)">
+            <summary>
+            Add a handler to this try block
+            </summary>
+            <param name="handler">a handler to be added to the try block</param>
+        </member>
+        <member name="M:QUT.PERWAPI.TryBlock.GetHandlers">
+            <summary>
+            Get an array containing all the handlers.
+            </summary>
+            <returns>The list of handlers.</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.Catch">
+            <summary>
+            The descriptor for a catch clause (.catch)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Catch.#ctor(QUT.PERWAPI.Class,QUT.PERWAPI.CILLabel,QUT.PERWAPI.CILLabel)">
+            <summary>
+            Create a new catch clause
+            </summary>
+            <param name="except">the exception to be caught</param>
+            <param name="handlerStart">start of the handler code</param>
+            <param name="handlerEnd">end of the handler code</param>
+        </member>
+        <member name="T:QUT.PERWAPI.Filter">
+            <summary>
+            The descriptor for a filter clause (.filter)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Filter.#ctor(QUT.PERWAPI.CILLabel,QUT.PERWAPI.CILLabel,QUT.PERWAPI.CILLabel)">
+            <summary>
+            Create a new filter clause
+            </summary>
+            <param name="filterLabel">the label where the filter code starts</param>
+            <param name="handlerStart">the start of the handler code</param>
+            <param name="handlerEnd">the end of the handler code</param>
+        </member>
+        <member name="T:QUT.PERWAPI.Finally">
+            <summary>
+            Descriptor for a finally block (.finally)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Finally.#ctor(QUT.PERWAPI.CILLabel,QUT.PERWAPI.CILLabel)">
+            <summary>
+            Create a new finally clause
+            </summary>
+            <param name="finallyStart">start of finally code</param>
+            <param name="finallyEnd">end of finally code</param>
+        </member>
+        <member name="T:QUT.PERWAPI.Fault">
+            <summary>
+            Descriptor for a fault block (.fault)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Fault.#ctor(QUT.PERWAPI.CILLabel,QUT.PERWAPI.CILLabel)">
+            <summary>
+            Create a new fault clause
+            </summary>
+            <param name="faultStart">start of the fault code</param>
+            <param name="faultEnd">end of the fault code</param>
+        </member>
+        <member name="T:QUT.PERWAPI.SourceFile">
+            <summary>
+            Descriptor for a file containing a managed resource
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.GenericParamConstraint">
+            <summary>
+            Descriptor for GenericParamConstraint 
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.ImplMap">
+            <summary>
+            Descriptor for pinvoke information for a method 
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Member">
+            <summary>
+            Base class for field/methods (member of a class)
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.InterfaceImpl">
+            <summary>
+            Descriptor for interface implemented by a class
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.ManifestResource">
+            <summary>
+            Descriptor for resources used in this PE file NOT YET IMPLEMENTED
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.MapElem">
+            <summary>
+            Base class for elements in the PropertyMap, EventMap and 
+            NestedClass MetaData tables
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.MethodImpl">
+            <summary>
+            Descriptor for an overriding method (.override)
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.MethodSemantics">
+            <summary>
+            Descriptor for Property and Event methods
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Param">
+            <summary>
+            Descriptor for a parameter of a method defined in this assembly/module
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Param.#ctor(QUT.PERWAPI.ParamAttr,System.String,QUT.PERWAPI.Type)">
+            <summary>
+            Create a new parameter for a method
+            </summary>
+            <param name="mode">param mode (in, out, opt)</param>
+            <param name="parName">parameter name</param>
+            <param name="parType">parameter type</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Param.AddDefaultValue(QUT.PERWAPI.Constant)">
+            <summary>
+            Add a default value to this parameter
+            </summary>
+            <param name="cVal">the default value for the parameter</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Param.GetDefaultValue">
+            <summary>
+            Get the default constant value for this parameter
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Param.RemoveDefaultValue">
+            <summary>
+            Remove the default constant value for this parameter
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Param.SetMarshalType(QUT.PERWAPI.NativeType)">
+            <summary>
+            Add marshalling information about this parameter
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Param.GetMarshalType">
+            <summary>
+            Get the parameter marshalling information
+            </summary>
+            <returns>The native type to marshall to</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Param.RemoveMashalType">
+            <summary>
+            Remove any marshalling information for this parameter
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Param.GetParType">
+            <summary>
+            Get the type of this parameter
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Param.SetParType(QUT.PERWAPI.Type)">
+            <summary>
+            Set the type of this parameter
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Param.GetName">
+            <summary>
+            Retrieve the name of this parameter
+            </summary>
+            <returns>parameter name</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Param.SetName(System.String)">
+            <summary>
+            Set the name of this parameter
+            </summary>
+            <param name="nam">parameter name</param>
+        </member>
+        <member name="T:QUT.PERWAPI.ConstantElem">
+            <summary>
+            Summary description for ConstantElem.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.DeclSecurity">
+            <summary>
+            Descriptor for security permissions for a class or a method NOT YET IMPLEMENTED
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Constant">
+            <summary>
+            Descriptor for a constant value, to be written in the blob heap
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.BoolConst">
+            <summary>
+            Boolean constant
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.BoolConst.#ctor(System.Boolean)">
+            <summary>
+            Create a new boolean constant with the value "val"
+            </summary>
+            <param name="val">value of this boolean constant</param>
+        </member>
+        <member name="T:QUT.PERWAPI.ArrayConst">
+            <summary>
+            Constant array
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.DataConstant">
+            <summary>
+            Descriptor for a constant value
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.AddressConstant">
+            <summary>
+            Constant for a memory address
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PDBWriter">
+            <summary>
+            Writes PDB files
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBWriter.#ctor(System.String)">
+            <summary>
+            Create a new instance of the PDB Writer
+            </summary>
+            <param name="PEFilename">The name of the PE file we are writting the PDB file for.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBWriter.SetEntryPoint(System.Int32)">
+            <summary>
+            Set the entry method of the applicaiton
+            </summary>
+            <param name="token">The token for the entry method.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBWriter.OpenScope(System.Int32)">
+            <summary>
+            Open a new scope.
+            </summary>
+            <param name="offset">Offset as to where the scope should start.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBWriter.CloseScope(System.Int32)">
+            <summary>
+            Close the current scope at the given offset.
+            </summary>
+            <param name="offset">The offset of where to close the scope.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBWriter.BindLocal(System.String,System.Int32,System.UInt32,System.Int32,System.Int32)">
+            <summary>
+            Bind a local to the current scope.
+            </summary>
+            <param name="name">The name of the variable.</param>
+            <param name="idx">The index of the variable in the locals table.</param>
+            <param name="token">The symbol token for the given variable.</param>
+            <param name="startOffset">The starting offset for the binding.  Set to 0 to default to current scope.</param>
+            <param name="endOffset">The ending offset for the binding.  Set to 0 to default to current scope.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBWriter.AddSequencePoint(System.String,System.Guid,System.Guid,System.Guid,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Add a new sequnce point.
+            </summary>
+            <param name="sourceFile">The source file the sequence point is in.</param>
+            <param name="docLanguage">The language of the source file.</param>
+            <param name="langVendor">The language vendor of the source file.</param>
+            <param name="docType">The document type.</param>
+            <param name="offset">The offset of the sequence point.</param>
+            <param name="line">The starting line for the sequence point.</param>
+            <param name="col">The starting column for the sequence point.</param>
+            <param name="endLine">The ending line for the sequence point.</param>
+            <param name="endCol">The ending column for the sequence point.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBWriter.OpenMethod(System.Int32)">
+            <summary>
+            Open a method.  Scopes and sequence points will be added to this method.
+            </summary>
+            <param name="token">The token for this method.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBWriter.CloseMethod">
+            <summary>
+            Close the current method.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBWriter.WritePDBFile">
+            <summary>
+            Write the PDB file to disk.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBWriter.WriteScopeAndLocals(QUT.Symbols.SymbolWriter,QUT.PERWAPI.PDBWriter.Scope)">
+            <summary>
+            Write out the scopes and the locals to the PDB file.
+            </summary>
+            <param name="symWriter">The symbol writer for this file.</param>
+            <param name="scope">The scope to write out.</param>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBWriter.PEFilename">
+            <summary>
+            The name of the PE file this PDB file belongs to.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBWriter.PDBFilename">
+            <summary>
+            The name of the PDB file being written.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBWriter.DebugInfo">
+            <summary>
+            Provide access to the debug info which needs to be written to the PE file.
+            This is only available after the call to WritePDBFile() has been made.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PDBWriter.SequencePointList">
+            <summary>
+            A list of sequence points.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PDBWriter.Document">
+            <summary>
+            A source file document.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PDBWriter.Method">
+            <summary>
+            A method.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PDBWriter.Scope">
+            <summary>
+            A scope.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PDBWriter.LocalBinding">
+            <summary>
+            A local binding.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PDBReader">
+            <summary>
+            Read a given PDB file.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBReader.#ctor(System.String)">
+            <summary>
+            Read the given PDB file by filename.
+            </summary>
+            <param name="fileName">The filename and path to the PDB file.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBReader.GetMethod(System.Int32)">
+            <summary>
+            Return a particular method.
+            </summary>
+            <param name="token">The token to identify the method.</param>
+            <returns>The method with the given token.</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.PDBMethod">
+            <summary>
+            Defines debug information for a method.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBMethod.#ctor(System.Diagnostics.SymbolStore.ISymbolMethod)">
+            <summary>
+            Create a new PDB method object from an ISymbolMethod object.
+            </summary>
+            <param name="meth">The ISymbolMethod object to wrap.</param>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBMethod.Scope">
+            <summary>
+            The root scope of the method.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBMethod.SequencePoints">
+            <summary>
+            The sequence points in the method.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PDBScope">
+            <summary>
+            Defines a scope in which local variables exist.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBScope.#ctor(System.Diagnostics.SymbolStore.ISymbolScope)">
+            <summary>
+            Create a new scope from a ISymbolScope
+            </summary>
+            <param name="scope"></param>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBScope.StartOffset">
+            <summary>
+            The starting index for the scope.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBScope.EndOffset">
+            <summary>
+            The end index for the scope.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBScope.Variables">
+            <summary>
+            The variables that exist in this scope.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBScope.Children">
+            <summary>
+            The sub-scopes within this scope.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PDBSequencePoint">
+            <summary>
+            Defines a reference to one section of code to be highlighted when 
+            stepping through in debug mode.  Typically one line of code.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBSequencePoint.#ctor(System.Int32,QUT.PERWAPI.PDBDocument,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Create a new sequence point.
+            </summary>
+            <param name="offset"></param>
+            <param name="doc">The source file.</param>
+            <param name="line">The line the point begins on.</param>
+            <param name="col">The column the point begins with.</param>
+            <param name="endLine">The line the point ends on.</param>
+            <param name="endCol">The column the point ends with.</param>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBSequencePoint.Document">
+            <summary>
+            The source file for this sequence point.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBSequencePoint.Offset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBSequencePoint.Line">
+            <summary>
+            The line this sequence point starts on.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBSequencePoint.Column">
+            <summary>
+            The column this sequnce point starts with.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBSequencePoint.EndLine">
+            <summary>
+            The line this sequence point ends with.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBSequencePoint.EndColumn">
+            <summary>
+            The column this sequence point ends with.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PDBVariable">
+            <summary>
+            A PDB variable object.  Stores debug information about a variable.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBVariable.#ctor(System.Diagnostics.SymbolStore.ISymbolVariable)">
+            <summary>
+            Create a new PDBVariable object from an ISymbolVariable object.
+            </summary>
+            <param name="var"></param>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBVariable.Name">
+            <summary>
+            The name of the variable.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBVariable.Address">
+            <summary>
+            The address or index of the variable.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PDBDocument">
+            <summary>
+            A PDB document is a source file.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PDBDocument.#ctor(System.Diagnostics.SymbolStore.ISymbolDocument)">
+            <summary>
+            Create a new document object from an existing document.
+            </summary>
+            <param name="doc">The ISymbolDocument to wrap.</param>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBDocument.Language">
+            <summary>
+            The language for this document.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBDocument.LanguageVendor">
+            <summary>
+            The language vendor for this document.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBDocument.DocumentType">
+            <summary>
+            The type for this document.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.PDBDocument.URL">
+            <summary>
+            The path/url to the source file.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.MergeBuffer.hasRootScope">
+            <summary>
+            Tests if Instructions begin and end with an OpenScope/CloseScope pair
+            </summary>
+            <returns>True if there is a root scope</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.ModuleFile">
+            <summary>
+            Descriptor for a file referenced in THIS assembly/module (.file)
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.ResourceFile">
+            <summary>
+            Descriptor for a file containing a managed resource
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.CustomAttribute">
+            <summary>
+            Descriptor for a Custom Attribute (.custom) 
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.CustomModifiedType">
+            <summary>
+            Descriptor for a custom modifier of a type (modopt or modreq)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CustomModifiedType.#ctor(QUT.PERWAPI.Type,QUT.PERWAPI.CustomModifier,QUT.PERWAPI.Class)">
+            <summary>
+            Create a new custom modifier for a type
+            </summary>
+            <param name="type">the type to be modified</param>
+            <param name="cmod">the modifier</param>
+            <param name="cmodType">the type reference to be associated with the type</param>
+        </member>
+        <member name="T:QUT.PERWAPI.PrimitiveType">
+            <summary>
+            Descriptor for the Primitive types defined in IL
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.GenericParam">
+            <summary>
+            Descriptor for a generic parameter for either a class or method. 
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.GenericParam.SetAttribute(QUT.PERWAPI.GenericParamAttr)">
+            <summary>
+            Set the attribute for this generic parameter
+            </summary>
+            <param name="attr">the attribute</param>
+        </member>
+        <member name="M:QUT.PERWAPI.GenericParam.GetAttribute">
+            <summary>
+            Get the attribute for this generic parameter
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.GenericParam.AddConstraint(QUT.PERWAPI.Type)">
+            <summary>
+            Add a type constraint to this generic parameter
+            </summary>
+            <param name="cType">type constraining the parameter type</param>
+        </member>
+        <member name="M:QUT.PERWAPI.GenericParam.RemoveConstraint(QUT.PERWAPI.Type)">
+            <summary>
+            Remove a constraint from this generic parameter
+            </summary>
+            <param name="cType">class type of constraint</param>
+        </member>
+        <member name="M:QUT.PERWAPI.GenericParam.GetConstraint(System.Int32)">
+            <summary>
+            Return a constraint from the list
+            </summary>
+            <param name="i">constraint index</param>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.GenericParam.GetConstraintCount">
+            <summary>
+            Get the number of constrains on this GenericParam
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.GenericParam.GetName">
+            <summary>
+            Get the name of this generic parameter
+            </summary>
+            <returns>generic parameter name</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.GenericParTypeSpec">
+            <summary>
+            Wrapper for Generic Parameter of TypeSpec type.
+            </summary> 
+        </member>
+        <member name="T:QUT.PERWAPI.Array">
+            <summary>
+            The IL Array type: there are two sub-classes --
+            BoundArrays, possibly multi dimensional arrays with bounds.
+            ZeroBasedArrays, built-in 1-D arrays of the CLR
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.Array.elemType">
+            <summary>
+            The element type of the array
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.BoundArray">
+            <summary>
+            Arrays with one or more dimensions, with explicit bounds
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.BoundArray.#ctor(QUT.PERWAPI.Type,System.Int32,System.Int32[],System.Int32[])">
+            <summary>
+            Create a new multi dimensional array type 
+            eg. elemType[1..5,3..10,5,,] would be 
+            new BoundArray(elemType,5,[1,3,0],[5,10,4])
+            </summary>
+            <param name="elementType">the type of the elements</param>
+            <param name="dimensions">the number of dimensions</param>
+            <param name="loBounds">lower bounds of dimensions</param>
+            <param name="upBounds">upper bounds of dimensions</param>
+        </member>
+        <member name="M:QUT.PERWAPI.BoundArray.#ctor(QUT.PERWAPI.Type,System.Int32,System.Int32[])">
+            <summary>
+            Create a new multi dimensional array type with low bounds
+            specified but no sizes specified.  C# arrays T[,] do this
+            with implicit low bounds of zero, but no sizes
+            </summary>
+            <param name="elementType">the type of the elements</param>
+            <param name="dimensions">the number of dimensions</param>
+            <param name="bounds">the low bounds of the dimensions</param>
+        </member>
+        <member name="M:QUT.PERWAPI.BoundArray.#ctor(QUT.PERWAPI.Type,System.Int32)">
+            <summary>
+            Create a new multi dimensional array type 
+            eg. elemType[,,] would be new BoundArray(elemType,3)
+            </summary>
+            <param name="elementType">the type of the elements</param>
+            <param name="dimensions">the number of dimensions</param>
+        </member>
+        <member name="T:QUT.PERWAPI.ZeroBasedArray">
+            <summary>
+            Single dimensional array with zero lower bound
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.ZeroBasedArray.#ctor(QUT.PERWAPI.Type)">
+            <summary>
+            Create a new array  -   elementType[]
+            </summary>
+            <param name="elementType">the type of the array elements</param>
+        </member>
+        <member name="T:QUT.PERWAPI.MethPtrType">
+            <summary>
+            Descriptor for a FunctionPointer type
+            </summary>
+            
+        </member>
+        <member name="M:QUT.PERWAPI.MethPtrType.#ctor(QUT.PERWAPI.Method)">
+            <summary>
+            Create a new function pointer type
+            </summary>
+            <param name="meth">the function to be referenced</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:QUT.PERWAPI.PtrType" -->
+        <!-- Badly formed XML comment ignored for member "T:QUT.PERWAPI.ManagedPointer" -->
+        <member name="M:QUT.PERWAPI.ManagedPointer.#ctor(QUT.PERWAPI.Type)">
+            <summary>
+            Create new managed pointer to baseType
+            </summary>
+            <param name="bType">the base type of the pointer</param>
+        </member>
+        <member name="T:QUT.PERWAPI.UnmanagedPointer">
+            <summary>
+            Descriptor for an unmanaged pointer (type *)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.UnmanagedPointer.#ctor(QUT.PERWAPI.Type)">
+            <summary>
+            Create a new unmanaged pointer to baseType
+            </summary>
+            <param name="baseType">the base type of the pointer</param>
+        </member>
+        <member name="T:QUT.PERWAPI.Section">
+            <summary>
+            Descriptor for a Section in a PEFile  eg .text, .sdata
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.Section.name">
+            <summary>
+            Eight characters exactly, null padded if necessary.
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.Section.loadedSize">
+            <summary>
+            Total size of the section in bytes. If this value is 
+            greater than SizeOFRawData the section is zero-padded.
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.Section.loadedRVA">
+            <summary>
+            Position in memory when loaded, relative to image base.
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.Section.sizeOnDisk">
+            <summary>
+            Size of raw data in the section. Must be multiple of file alignment size.
+            Can be smaller than loadedSize, or larger (as a result of alignment).
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.Section.fileOffset">
+            <summary>
+            Offset to section's page within the PE file.  Must be multiple
+            of file alignment constant.
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.Section.flags">
+            <summary>
+            Flags of section: code = 0x20, init-data = 0x40, un-init-data = 0x80, 
+            execute = 0x20000000, read = 0x40000000, write = 0x80000000.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Method">
+            <summary>
+            Base class for Method Descriptors
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Method.AddCallConv(QUT.PERWAPI.CallConv)">
+            <summary>
+            Add calling conventions to this method descriptor
+            </summary>
+            <param name="cconv"></param>
+        </member>
+        <member name="M:QUT.PERWAPI.Method.GetCallConv">
+            <summary>
+            Get the calling conventions for this method
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Method.AddRetType(QUT.PERWAPI.Type)">
+            <summary>
+            Set the return type
+            </summary>
+            <param name="retT">type returned</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Method.GetRetType">
+            <summary>
+            Get the method return type
+            </summary>
+            <returns>method return type</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Method.GetParTypes">
+            <summary>
+            Get the types of the method parameters
+            </summary>
+            <returns>list of parameter types</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Method.GetOptParTypes">
+            <summary>
+            Get the optional parameter types (for varargs)
+            </summary>
+            <returns>list of vararg types</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Method.AddGenericParam(System.String)">
+            <summary>
+            Add a generic type to this method
+            </summary>
+            <param name="name">the name of the generic type</param>
+            <returns>the descriptor for the generic type</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Method.GetGenericParam(System.String)">
+            <summary>
+            Get the descriptor for a generic type 
+            </summary>
+            <param name="name">the name of the generic type</param>
+            <returns>descriptor for generic type "name"</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.MethodSpec">
+            <summary>
+            Descriptor for an Instantiation of a generic method 
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.MethodRef">
+            <summary>
+            Descriptor for a method defined in another assembly/module
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodRef.SetParTypes(QUT.PERWAPI.Type[])">
+            <summary>
+            Set the parameter types for this method
+            </summary>
+            <param name="pars">List of types of method parameters</param>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodRef.SetOptParTypes(QUT.PERWAPI.Type[])">
+            <summary>
+            Set the list of optional parameter types for this method
+            </summary>
+            <param name="pars">list of optional parameter types</param>
+        </member>
+        <member name="T:QUT.PERWAPI.MethodDef">
+            <summary>
+            Descriptor for a method defined in THIS assembly/module
+            IL     .method
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.GetParams">
+            <summary>
+            Get the parameters of this method
+            </summary>
+            <returns>Array of params of this method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.SetParams(QUT.PERWAPI.Param[])">
+            <summary>
+            Set the parameters for this method
+            </summary>
+            <param name="pars">Descriptors of the parameters for this method</param>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.AddMethAttribute(QUT.PERWAPI.MethAttr)">
+            <summary>
+            Add some attributes to this method descriptor
+            </summary>
+            <param name="ma">the attributes to be added</param>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.GetMethAttributes">
+            <summary>
+            Property to get and set the attributes for this method
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.AddImplAttribute(QUT.PERWAPI.ImplAttr)">
+            <summary>
+            Add some implementation attributes to this method descriptor
+            </summary>
+            <param name="ia">the attributes to be added</param>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.GetImplAttributes">
+            <summary>
+            Property to get and set the implementation attributes for this method
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.SetMaxStack(System.Int32)">
+            <summary>
+            Set the maximum stack height for this method
+            </summary>
+            <param name="maxStack">the maximum height of the stack</param>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.GetMaxStack">
+            <summary>
+            Retrieve the maximum size of the stack for the code
+            of this method
+            </summary>
+            <returns>max stack height for CIL codes</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.AddLocals(QUT.PERWAPI.Local[],System.Boolean)">
+            <summary>
+            Add local variables to this method
+            </summary>
+            <param name="locals">the locals to be added</param>
+            <param name="initLocals">are locals initialised to default values</param>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.GetLocals">
+            <summary>
+            Retrieve the locals for this method
+            </summary>
+            <returns>list of locals declared in this method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.RemoveLocals">
+            <summary>
+            Remove all the locals from this method
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.DeclareEntryPoint">
+            <summary>
+            Mark this method as having an entry point
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.HasEntryPoint">
+            <summary>
+            Does this method have an entrypoint?
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.RemoveEntryPoint">
+            <summary>
+            Remove the entry point from this method
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.CreateCodeBuffer">
+            <summary>
+            Create a code buffer for this method to add the IL instructions to
+            </summary>
+            <returns>a buffer for this method's IL instructions</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.GetCodeBuffer">
+            <summary>
+            Get the CIL code buffer for this method
+            </summary>
+            <returns>Code buffer for this method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.MakeVarArgSignature(QUT.PERWAPI.Type[])">
+            <summary>
+            Make a method reference descriptor for this method to be used 
+            as a callsite signature for this vararg method
+            </summary>
+            <param name="optPars">the optional pars for the vararg method call</param>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.RefOf">
+            <summary>
+            Get the MethodRef equivalent to this MethodDef.  Assumes 
+            that one has been created.
+            </summary>
+            <returns>MethodRef for this MethodDef</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.MethodDef.MakeRefOf">
+            <summary>
+            Get the MethodRef equivalent to this MethodDef.  If one
+            does not exist, then create it.
+            </summary>
+            <returns>MethodRef for this MethodDef</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.PEFile">
+            <summary>
+            Base class for the PEFile (starting point)
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Module">
+            <summary>
+            Descriptor for a module
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.DefiningScope">
+            <summary>
+            A scope for definitions
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.Module.defaultClass">
+            <summary>
+            The default class "Module" for globals
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.Module.ismscorlib">
+            <summary>
+            Is this module mscorlib.dll
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.Module.resources">
+            <summary>
+            Managed resources for this module
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.AddClass(QUT.PERWAPI.TypeAttr,System.String,System.String)">
+            <summary>
+            Add a class to this Module
+            If this class already exists, throw an exception
+            </summary>
+            <param name="attrSet">attributes of this class</param>
+            <param name="nsName">name space name</param>
+            <param name="name">class name</param>
+            <returns>a descriptor for this new class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.AddValueClass(QUT.PERWAPI.TypeAttr,System.String,System.String)">
+            <summary>
+            Add a class which extends System.ValueType to this Module
+            If this class already exists, throw an exception
+            </summary>
+            <param name="attrSet">attributes of this class</param>
+            <param name="nsName">name space name</param>
+            <param name="name">class name</param>
+            <returns>a descriptor for this new class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.AddClass(QUT.PERWAPI.TypeAttr,System.String,System.String,QUT.PERWAPI.Class)">
+            <summary>
+            Add a class to this PE File
+            </summary>
+            <param name="attrSet">attributes of this class</param>
+            <param name="nsName">name space name</param>
+            <param name="name">class name</param>
+            <param name="superType">super type of this class (extends)</param>
+            <returns>a descriptor for this new class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.AddClass(QUT.PERWAPI.ClassDef)">
+            <summary>
+            Add a class to this module
+            If this class already exists, throw an exception
+            </summary>
+            <param name="aClass">The class to be added</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.GetClass(System.String)">
+            <summary>
+            Get a class of this module, if no class exists, return null
+            </summary>
+            <param name="name">The name of the class to get</param>
+            <returns>ClassDef for name or null</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.GetClass(System.String,System.String)">
+            <summary>
+            Get a class of this module, if no class exists, return null
+            </summary>
+            <param name="nsName">The namespace of the class</param>
+            <param name="name">The name of the class to get</param>
+            <returns>ClassDef for nsName.name or null</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.GetClasses">
+            <summary>
+            Get all the classes of this module
+            </summary>
+            <returns>An array containing a ClassDef for each class of this module</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.AddMethod(System.String,QUT.PERWAPI.Type,QUT.PERWAPI.Param[])">
+            <summary>
+            Add a "global" method to this module
+            </summary>
+            <param name="name">method name</param>
+            <param name="retType">return type</param>
+            <param name="pars">method parameters</param>
+            <returns>a descriptor for this new "global" method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.AddMethod(System.String,QUT.PERWAPI.GenericParam[],QUT.PERWAPI.Type,QUT.PERWAPI.Param[])">
+            <summary>
+            Add a "global" method to this module
+            </summary>
+            <param name="name">method name</param>
+            <param name="genPars">generic parameters</param>
+            <param name="retType">return type</param>
+            <param name="pars">method parameters</param>
+            <returns>a descriptor for this new "global" method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.AddMethod(QUT.PERWAPI.MethAttr,QUT.PERWAPI.ImplAttr,System.String,QUT.PERWAPI.Type,QUT.PERWAPI.Param[])">
+            <summary>
+            Add a "global" method to this module
+            </summary>
+            <param name="mAtts">method attributes</param>
+            <param name="iAtts">method implementation attributes</param>
+            <param name="name">method name</param>
+            <param name="retType">return type</param>
+            <param name="pars">method parameters</param>
+            <returns>a descriptor for this new "global" method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.AddMethod(QUT.PERWAPI.MethAttr,QUT.PERWAPI.ImplAttr,System.String,QUT.PERWAPI.GenericParam[],QUT.PERWAPI.Type,QUT.PERWAPI.Param[])">
+            <summary>
+            Add a "global" method to this module
+            </summary>
+            <param name="mAtts">method attributes</param>
+            <param name="iAtts">method implementation attributes</param>
+            <param name="name">method name</param>
+            <param name="genPars">generic parameters</param>
+            <param name="retType">return type</param>
+            <param name="pars">method parameters</param>
+            <returns>a descriptor for this new "global" method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.AddMethod(QUT.PERWAPI.MethodDef)">
+            <summary>
+            Add a "global" method to this module
+            </summary>
+            <param name="meth">The method to be added</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.GetMethod(System.String)">
+            <summary>
+            Get a method of this module, if it exists
+            </summary>
+            <param name="name">The name of the method to get</param>
+            <returns>MethodDef for name, or null if one does not exist</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.GetMethods(System.String)">
+            <summary>
+            Get all the methods of this module with a specified name
+            </summary>
+            <param name="name">The name of the method(s)</param>
+            <returns>An array of all the methods of this module called "name" </returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.GetMethod(System.String,QUT.PERWAPI.Type[])">
+            <summary>
+            Get a method of this module, if it exists
+            </summary>
+            <param name="name">The name of the method to get</param>
+            <param name="parTypes">The signature of the method</param>
+            <returns>MethodDef for name(parTypes), or null if one does not exist</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.GetMethods">
+            <summary>
+            Get all the methods of this module
+            </summary>
+            <returns>An array of all the methods of this module</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.RemoveMethod(QUT.PERWAPI.MethodDef)">
+            <summary>
+            Delete a method from this module
+            </summary>
+            <param name="meth">The method to be deleted</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.RemoveMethod(System.String)">
+            <summary>
+            Delete a method from this module
+            </summary>
+            <param name="name">The name of the method to be deleted</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.RemoveMethod(System.String,QUT.PERWAPI.Type[])">
+            <summary>
+            Delete a method from this module
+            </summary>
+            <param name="name">The name of the method to be deleted</param>
+            <param name="parTypes">The signature of the method to be deleted</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.RemoveMethod(System.Int32)">
+            <summary>
+            Delete a method from this module
+            </summary>
+            <param name="ix">The index of the method (in the method array
+            returned by GetMethods()) to be deleted</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.AddField(System.String,QUT.PERWAPI.Type)">
+            <summary>
+            Add a "global" field to this module
+            </summary>
+            <param name="name">field name</param>
+            <param name="fType">field type</param>
+            <returns>a descriptor for this new "global" field</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.AddField(QUT.PERWAPI.FieldAttr,System.String,QUT.PERWAPI.Type)">
+            <summary>
+            Add a "global" field to this module
+            </summary>
+            <param name="attrSet">attributes of this field</param>
+            <param name="name">field name</param>
+            <param name="fType">field type</param>
+            <returns>a descriptor for this new "global" field</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.AddField(QUT.PERWAPI.FieldDef)">
+            <summary>
+            Add a "global" field to this module
+            </summary>
+            <param name="fld">The field to be added</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.GetField(System.String)">
+            <summary>
+            Get a field of this module, if it exists
+            </summary>
+            <param name="name">The name of the field</param>
+            <returns>FieldDef for "name", or null if one doesn't exist</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.GetFields">
+            <summary>
+            Get all the fields of this module
+            </summary>
+            <returns>An array of all the fields of this module</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.MakeRefOf">
+            <summary>
+            Make a ModuleRef for this Module.
+            </summary>
+            <returns>ModuleRef for this Module</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Module.SetName(System.String)">
+            <summary>
+            Set the name for this module
+            </summary>
+            <param name="newName">New module name</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.#ctor(System.String)">
+            <summary>
+            Create a new PE File with the name "fileName".  If "fileName" ends in ".dll" then
+            the file is a dll, otherwise it is an exe file.  This PE File has no assembly.
+            </summary>
+            <param name="fileName">Name for the output file.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.#ctor(System.String,System.String)">
+            <summary>
+            Create a new PE File with the name "fileName".  If "fileName" ends in ".dll" then
+            the file is a dll, otherwise it is an exe file.  This file has an Assembly called
+            "assemblyName".
+            </summary>
+            <param name="fileName">Name for the output file</param>
+            <param name="assemblyName">Name of the assembly</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.ReadPEFile(System.String)">
+            <summary>
+            Read a PE file and create all the data structures to represent it
+            </summary>
+            <param name="filename">The file name of the PE file</param>
+            <returns>PEFile object representing "filename"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.ReadExportedInterface(System.String)">
+            <summary>
+            Read an existing PE File and return the exported interface 
+            (ie. anything that was specified as public).  
+            All the MetaData structures will be Refs.
+            </summary>
+            <param name="filename">The name of the pe file</param>
+            <returns>The AssemblyRef or ModuleRef describing the exported interface of the specified file</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.GetNetVersion">
+            <summary>
+            Get the version of .NET for this PE file
+            </summary>
+            <returns>.NET version</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.SetNetVersion(QUT.PERWAPI.NetVersion)">
+            <summary>
+            Set the .NET version for this PE file
+            </summary>
+            <param name="nVer">.NET version</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.GetNetVersionString">
+            <summary>
+            Get the .NET version for this PE file
+            </summary>
+            <returns>string representing the .NET version</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.MakeExternAssembly(System.String)">
+            <summary>
+            Make a descriptor for an external assembly to this PEFile (.assembly extern)
+            </summary>
+            <param name="assemName">the external assembly name</param>
+            <returns>a descriptor for this external assembly</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.MakeExternModule(System.String)">
+            <summary>
+            Make a descriptor for an external module to this PEFile (.module extern)
+            </summary>
+            <param name="name">the external module name</param>
+            <returns>a descriptor for this external module</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.SetOutputDirectory(System.String)">
+            <summary>
+            Set the directory that the PE File will be written to.  
+            The default is the current directory.
+            </summary>
+            <param name="outputDir">The directory to write the PE File to.</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.SetOutputStream(System.IO.Stream)">
+            <summary>
+            Direct PE File output to an existing stream, instead of creating
+            a new file.
+            </summary>
+            <param name="output">The output stream</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.SetIsDLL(System.Boolean)">
+            <summary>
+            Specify if this PEFile is a .dll or .exe
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.SetSubSystem(QUT.PERWAPI.SubSystem)">
+            <summary>
+            Set the subsystem (.subsystem) (Default is Windows Console mode)
+            </summary>
+            <param name="subS">subsystem value</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.SetCorFlags(QUT.PERWAPI.CorFlags)">
+            <summary>
+            Set the flags (.corflags)
+            </summary>
+            <param name="flags">the flags value</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.GetElement(System.UInt32)">
+            <summary>
+            Get a Meta Data Element from this PE file
+            </summary>
+            <param name="token">The meta data token for the required element</param>
+            <returns>The meta data element denoted by token</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.AddUnmanagedResourceFile(System.String)">
+            <summary>
+            Add an unmanaged resource to this PEFile 
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.AddManagedResource(System.String,System.Byte[],System.Boolean)">
+            <summary>
+            Add a managed resource to this PEFile.  The resource will be embedded in this PE file. 
+            </summary>
+            <param name="resName">The name of the managed resource</param>
+            <param name="resBytes">The managed resource</param>
+            <param name="isPublic">Access for the resource</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.AddExternalManagedResource(System.String,QUT.PERWAPI.AssemblyRef,System.Boolean)">
+            <summary>
+            Add a managed resource from another assembly.
+            </summary>
+            <param name="resName">The name of the resource</param>
+            <param name="assem">The assembly where the resource is</param>
+            <param name="isPublic">Access for the resource</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.AddExternalManagedResource(System.String,QUT.PERWAPI.ResourceFile,System.UInt32,System.Boolean)">
+            <summary>
+            Add a managed resource from another file in this assembly.
+            </summary>
+            <param name="resName">The name of the resource</param>
+            <param name="assem">The assembly where the resource is</param>
+            <param name="isPublic">Access for the resource</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.AddExternalManagedResource(System.String,QUT.PERWAPI.ModuleRef,System.UInt32,System.Boolean)">
+            <summary>
+            Add a managed resource from another module in this assembly.
+            </summary>
+            <param name="resName">The name of the resource</param>
+            <param name="assem">The assembly where the resource is</param>
+            <param name="isPublic">Access for the resource</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.AddExternalManagedResource(QUT.PERWAPI.ManifestResource,System.Boolean)">
+            <summary>
+            Add a managed resource from another assembly.
+            </summary>
+            <param name="mr"></param>
+            <param name="isPublic"></param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.GetResource(System.String)">
+            <summary>
+            Find a resource
+            </summary>
+            <param name="name">The name of the resource</param>
+            <returns>The resource with the name "name" or null </returns>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.GetThisAssembly">
+            <summary>
+            Get the descriptor for this assembly.  The PEFile must have been
+            created with hasAssembly = true
+            </summary>
+            <returns>the descriptor for this assembly</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.WritePEFile(System.Boolean)">
+            <summary>
+            Write out the PEFile (the "bake" function)
+            </summary>
+            <param name="debug">include debug information</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.MakeDebuggable(System.Boolean,System.Boolean)">
+            <summary>
+            Makes the assembly debuggable by attaching the DebuggableAttribute
+            to the Assembly. Call immediately before calling WritePEFile.
+            </summary>
+            <param name="allowDebug">set true to enable debugging, false otherwise</param>
+            <param name="suppressOpt">set true to disable optimizations that affect debugging</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFile.WriteCILFile(System.Boolean)">
+            <summary>
+            Write out a CIL text file for this PE file
+            </summary>
+            <param name="debug">include debug information</param>
+        </member>
+        <member name="T:QUT.PERWAPI.MetaDataInStream">
+            <summary>
+            Stream in the Meta Data  (#Strings, #US, #Blob and #GUID)
+            </summary>
+            
+        </member>
+        <member name="T:QUT.PERWAPI.MetaDataStream">
+            <summary>
+            Stream in the generated Meta Data  (#Strings, #US, #Blob and #GUID)
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.FieldRVA">
+            <summary>
+            Descriptor for the address of a field's value in the PE file
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.ClassDef">
+            <summary>
+            The descriptor for a class defined in the IL (.class) in the current assembly/module
+            </summary>
+            
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetScope">
+            <summary>
+            Fetch the PEFile which contains this class
+            </summary>
+            <returns>PEFile containing this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddAttribute(QUT.PERWAPI.TypeAttr)">
+            <summary>
+            Add an attribute to the attributes of this class
+            </summary>
+            <param name="ta">the attribute to be added</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.SetAttribute(QUT.PERWAPI.TypeAttr)">
+            <summary>
+            Set the attributes of this class
+            </summary>
+            <param name="ta">class attributes</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetAttributes">
+            <summary>
+            Get the attributes for this class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddImplementedInterface(QUT.PERWAPI.Class)">
+            <summary>
+            Add an interface that is implemented by this class
+            </summary>
+            <param name="iFace">the interface that is implemented</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetInterfaces">
+            <summary>
+            Get the interfaces implemented by this class
+            </summary>
+            <returns>List of implemented interfaces</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddField(System.String,QUT.PERWAPI.Type)">
+            <summary>
+            Add a field to this class
+            </summary>
+            <param name="name">field name</param>
+            <param name="fType">field type</param>
+            <returns>a descriptor for this new field</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddField(QUT.PERWAPI.FieldAttr,System.String,QUT.PERWAPI.Type)">
+            <summary>
+            Add a field to this class
+            </summary>
+            <param name="fAtts">attributes for this field</param>
+            <param name="name">field name</param>
+            <param name="fType">field type</param>
+            <returns>a descriptor for this new field</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddField(QUT.PERWAPI.FieldDef)">
+            <summary>
+            Add a field to this class
+            </summary>
+            <param name="f">Descriptor for the field to be added</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetField(System.String)">
+            <summary>
+            Get the descriptor for the field of this class named "name"
+            </summary>
+            <param name="name">The field name</param>
+            <returns>The descriptor for field "name"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetFields">
+            <summary>
+            Get the fields for this class
+            </summary>
+            <returns>List of fields of this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddMethod(System.String,QUT.PERWAPI.Type,QUT.PERWAPI.Param[])">
+            <summary>
+            Add a method to this class
+            </summary>
+            <param name="name">method name</param>
+            <param name="retType">return type</param>
+            <param name="pars">parameters</param>
+            <returns>a descriptor for this new method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddMethod(System.String,QUT.PERWAPI.GenericParam[],QUT.PERWAPI.Type,QUT.PERWAPI.Param[])">
+            <summary>
+            Add a method to this class
+            </summary>
+            <param name="name">method name</param>
+            <param name="genPars">generic parameters</param>
+            <param name="retType">return type</param>
+            <param name="pars">parameters</param>
+            <returns>a descriptor for this new method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddMethod(QUT.PERWAPI.MethAttr,QUT.PERWAPI.ImplAttr,System.String,QUT.PERWAPI.Type,QUT.PERWAPI.Param[])">
+            <summary>
+            Add a method to this class
+            </summary>
+            <param name="mAtts">attributes for this method</param>
+            <param name="iAtts">implementation attributes for this method</param>
+            <param name="name">method name</param>
+            <param name="retType">return type</param>
+            <param name="pars">parameters</param>
+            <returns>a descriptor for this new method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddMethod(QUT.PERWAPI.MethAttr,QUT.PERWAPI.ImplAttr,System.String,QUT.PERWAPI.GenericParam[],QUT.PERWAPI.Type,QUT.PERWAPI.Param[])">
+            <summary>
+            Add a method to this class
+            </summary>
+            <param name="mAtts">attributes for this method</param>
+            <param name="iAtts">implementation attributes for this method</param>
+            <param name="name">method name</param>
+            <param name="genPars">generic parameters</param>
+            <param name="retType">return type</param>
+            <param name="pars">parameters</param>
+            <returns>a descriptor for this new method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddMethod(QUT.PERWAPI.MethodDef)">
+            <summary>
+            Add a method to this class
+            </summary>
+            <param name="meth">Descriptor for the method to be added</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetMethod(System.String)">
+            <summary>
+            Get the descriptor for the method "name" of this class
+            </summary>
+            <param name="name">The name of the method to be retrieved</param>
+            <returns>The method descriptor for "name"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetMethod(System.String,QUT.PERWAPI.Type[])">
+            <summary>
+            Get the descriptor for the method called "name" with the signature "parTypes"
+            </summary>
+            <param name="name">The name of the method</param>
+            <param name="parTypes">The signature of the method</param>
+            <returns>The method descriptor for name(parTypes)</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetMethods(System.String)">
+            <summary>
+            Get all the methods of this class called "name"
+            </summary>
+            <param name="name">The method name</param>
+            <returns>List of methods called "name"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetMethods">
+            <summary>
+            Get all the methods for this class
+            </summary>
+            <returns>List of methods for this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddEvent(System.String,QUT.PERWAPI.Type)">
+            <summary>
+            Add an event to this class
+            </summary>
+            <param name="name">event name</param>
+            <param name="eType">event type</param>
+            <returns>a descriptor for this new event</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetEvent(System.String)">
+            <summary>
+            Get the event "name" of this class
+            </summary>
+            <param name="name">The event name</param>
+            <returns>The event desctiptor for "name"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetEvents">
+            <summary>
+            Get all the events of this class
+            </summary>
+            <returns>List of events for this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.RemoveEvent(System.String)">
+            <summary>
+            Remove the event "name" from this class
+            </summary>
+            <param name="name">The name of the event to be removed</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddProperty(System.String,QUT.PERWAPI.Type,QUT.PERWAPI.Type[])">
+            <summary>
+            Add a property to this class
+            </summary>
+            <param name="name">property name</param>
+            <param name="pars">parameters</param>
+            <param name="retType">return type</param>
+            <returns>a descriptor for this new property</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetProperty(System.String)">
+            <summary>
+            Get the property "name" for this class
+            </summary>
+            <param name="name">Descriptor for the property "name"</param>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetProperties">
+            <summary>
+            Get all the properties for this class
+            </summary>
+            <returns>List of properties for this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.RemoveProperty(System.String)">
+            <summary>
+            Remove the property "name" from this class
+            </summary>
+            <param name="name">Name of the property to be removed</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddNestedClass(QUT.PERWAPI.TypeAttr,System.String)">
+            <summary>
+            Add a nested class to this class
+            </summary>
+            <param name="attrSet">attributes for this nested class</param>
+            <param name="name">nested class name</param>
+            <returns>a descriptor for this new nested class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddNestedClass(QUT.PERWAPI.TypeAttr,System.String,QUT.PERWAPI.Class)">
+            <summary>
+            Add a nested class to this class
+            </summary>
+            <param name="attrSet">attributes for this nested class</param>
+            <param name="name">nested class name</param>
+            <param name="sType">super type of this nested class</param>
+            <returns>a descriptor for this new nested class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetNestedClass(System.String)">
+            <summary>
+            Get the nested class called "name"
+            </summary>
+            <param name="name">The name of the nested class</param>
+            <returns>Descriptor for the nested class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddLayoutInfo(System.Int32,System.Int32)">
+            <summary>
+            Add layout information for this class.  This class must have the
+            sequential or explicit attribute.
+            </summary>
+            <param name="packSize">packing size (.pack)</param>
+            <param name="classSize">class size (.size)</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetPackSize">
+            <summary>
+            Get the pack size for this class (only valid for ExplicitLayout or SequentialLayout
+            </summary>
+            <returns>Class pack size</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetClassSize">
+            <summary>
+            Get the size of this class (only valid for ExplicitLayout or SequentialLayout
+            </summary>
+            <returns>The size of this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.MakeRefOf">
+            <summary>
+            Make a ClassRef for this ClassDef
+            </summary>
+            <returns>ClassRef equivalent to this ClassDef</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddMethodOverride(QUT.PERWAPI.Method,QUT.PERWAPI.Method)">
+            <summary>
+            Use a method as the implementation for another method (.override)
+            </summary>
+            <param name="decl">the method to be overridden</param>
+            <param name="body">the implementation to be used</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddSecurity(QUT.PERWAPI.SecurityAction,System.Byte[])">
+            <summary>
+            Add security to this class
+            </summary>
+            <param name="act">The security action</param>
+            <param name="permissionSet">Permission set</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.AddSecurity(QUT.PERWAPI.DeclSecurity)">
+            <summary>
+            Add security to this class
+            </summary>
+            <param name="sec">The descriptor for the security to add to this class</param>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.GetSecurity">
+            <summary>
+            Get the security descriptor associated with this class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassDef.DeleteSecurity">
+            <summary>
+            Remove the security associated with this class
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.ClassDef.SuperType">
+            <summary>
+            Fetch or Get the superType for this class
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.ClassDef.RefOf">
+            <summary>
+            Get the ClassRef for this ClassDef, if there is one
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.NestedClassDef">
+            <summary>
+            Descriptor for a Nested Class defined in an assembly
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.NestedClassDef.GetScope">
+            <summary>
+            Fetch the PEFile which contains this class
+            </summary>
+            <returns>PEFile containing this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.NestedClassDef.GetParentClass">
+            <summary>
+            Get the enclosing class for this nested class
+            </summary>
+            <returns>ClassDef of the enclosing class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.NestedClassDef.MakeRefOf">
+            <returns>ClassRef equivalent to this ClassDef</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.Diag">
+            <summary>
+            Diagnostic
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.Diag.DiagOn">
+            <summary>
+            Flag for diagnostic output.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Hex">
+            <summary>
+            Facilities for outputting hexadecimal strings
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Hex.Byte(System.Int32)">
+            <summary>
+            Derives a hexadecimal string for a byte value
+            </summary>
+            <param name="b">the byte value</param>
+            <returns>hex string for the byte value</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Hex.Short(System.Int32)">
+            <summary>
+            Derives a hexadecimal string for a short value
+            </summary>
+            <param name="b">the short value</param>
+            <returns>hex string for the short value</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Hex.Int(System.Int32)">
+            <summary>
+            Derives a hexadecimal string for an int value
+            </summary>
+            <param name="val">the int value</param>
+            <returns>hex string for the int value</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Hex.Int(System.UInt32)">
+            <summary>
+            Derives a hexadecimal string for an unsigned int value
+            </summary>
+            <param name="num">the unsigned int value</param>
+            <returns>hex string for the unsigned int value</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Hex.Long(System.Int64)">
+            <summary>
+            Derives a hexadecimal string for a long value
+            </summary>
+            <param name="lnum">the long value</param>
+            <returns>hex string for the long value</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Hex.Long(System.UInt64)">
+            <summary>
+            Derives a hexadecimal string for an unsigned long value
+            </summary>
+            <param name="num">the unsigned long value</param>
+            <returns>hex string for the unsigned long value</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.NotYetImplementedException">
+            <summary>
+            Exception for features yet to be implemented
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.NotYetImplementedException.#ctor(System.String)">
+            <summary>
+            constructor
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="T:QUT.PERWAPI.TypeSignatureException">
+            <summary>
+            Error in a type signature
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.TypeSignatureException.#ctor(System.String)">
+            <summary>
+            constructor
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="T:QUT.PERWAPI.InstructionException">
+            <summary>
+            Error with a CIL instruction
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.DescriptorException">
+            <summary>
+            Error with descriptor types
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.DescriptorException.#ctor(System.String)">
+            <summary>
+            exception
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:QUT.PERWAPI.DescriptorException.#ctor">
+            <summary>
+            exception
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PEFileException">
+            <summary>
+            Error for invalid PE file
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PEFileException.#ctor(System.String)">
+            <summary>
+            PEFile exception constructor
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="T:QUT.PERWAPI.CouldNotFindMaxStackDepth">
+            <summary>
+            When the maximum stack depth could not be found dynamically.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CouldNotFindMaxStackDepth.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.InvalidStackDepth">
+            <summary>
+            When the stack depth is not valid for the current position.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.InvalidStackDepth.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.MetaData">
+            <summary>
+            MetaData 
+              Root (20 bytes + UTF-8 Version String + quad align padding)
+              StreamHeaders (8 bytes + null terminated name string + quad align padding)
+              Streams 
+                #~        (always present - holds metadata tables)
+                #Strings  (always present - holds identifier strings)
+                #US       (Userstring heap)
+                #Blob     (signature blobs)
+                #GUID     (guids for assemblies or Modules)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.MetaDataOut.GetDebugSig(QUT.PERWAPI.Local)">
+            <summary>
+            Get the debug signature for a local.
+            </summary>
+            <param name="loc">The local.</param>
+            <returns>The signature.</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.ExternClass">
+            <summary>
+            Descriptor for a class defined in another module of THIS assembly 
+            and exported (.class extern)
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.ClassLayout">
+            <summary>
+            Layout information for a class (.class [sequential | explicit])
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PEWriter.WriteDebugInfo">
+            <summary>
+            Write out the debug infro required for PDB files to the PE file.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PEReader.ReadMetaDataTableRefs">
+            <summary>
+            Read the Module metadata for this PE file.
+            If reading refs only, then thisModule is the ModuleRef 
+            If reading defs then pefile is the Module 
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PEReader.SaveUnmanagedResources">
+            <summary>
+            This method saves any *unmanaged* resources in the input PE-file 
+            to the PEResourcesDirectory field PEFile.unmanagedResourceRoot.
+            These should be written out to the .rscr section in the PE-file.
+            Managed resources appear as ManifestResouces in metadata, and are
+            handled completely differently.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.CorFlags">
+            <summary>
+            flags for the assembly (.corflags)
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CorFlags.CF_IL_ONLY">
+            <summary>
+            IL only
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CorFlags.CF_32_BITREQUIRED">
+            <summary>
+            32 bits
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CorFlags.CF_STRONGNAMESIGNED">
+            <summary>
+            strong name signed
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CorFlags.CF_TRACKDEBUGDATA">
+            <summary>
+            track debug data
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.SubSystem">
+            <summary>
+            subsystem for the assembly (.subsystem)
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.SubSystem.Native">
+            <summary>
+            native subsystem
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.SubSystem.Windows_GUI">
+            <summary>
+            gui app
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.SubSystem.Windows_CUI">
+            <summary>
+            console app
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.SubSystem.OS2_CUI">
+            <summary>
+            os2 console
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.SubSystem.POSIX_CUI">
+            <summary>
+            posix console
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.SubSystem.Native_Windows">
+            <summary>
+            native windows
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.SubSystem.Windows_CE_GUI">
+            <summary>
+            CE gui
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.HashAlgorithmType">
+            <summary>
+            Hash algorithms for the assembly
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.HashAlgorithmType.None">
+            <summary>
+            No hash algorithm
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.HashAlgorithmType.SHA1">
+            <summary>
+            SHA1
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.AssemAttr">
+            <summary>
+            Attributes for this assembly
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.AssemAttr.PublicKey">
+            <summary>
+            Public key assembly attribute
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.AssemAttr.Retargetable">
+            <summary>
+            retargetable assembly
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.AssemAttr.EnableJITCompileTracking">
+            <summary>
+            JIT tracking
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.AssemAttr.DisableJITCompileOptimizer">
+            <summary>
+            Disable JIT compile optimizer
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.CallConv">
+            <summary>
+            Method call conventions
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CallConv.Default">
+            <summary>
+            default cc
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CallConv.Cdecl">
+            <summary>
+            cdecl
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CallConv.Stdcall">
+            <summary>
+            stdcall
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CallConv.Thiscall">
+            <summary>
+            this call
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CallConv.Fastcall">
+            <summary>
+            fast call
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CallConv.Vararg">
+            <summary>
+            var arg
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CallConv.Generic">
+            <summary>
+            generic
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CallConv.Instance">
+            <summary>
+            instance
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CallConv.InstanceExplicit">
+            <summary>
+            explicit instance
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.MethodType">
+            <summary>
+            Method Types for Events and Properties
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.MethodType.Setter">
+            <summary>
+            setter
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.MethodType.Getter">
+            <summary>
+            getter
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.MethodType.Other">
+            <summary>
+            other
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.MethodType.AddOn">
+            <summary>
+            add on
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.MethodType.RemoveOn">
+            <summary>
+            remove on
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.MethodType.Fire">
+            <summary>
+            Fire
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.CustomModifier">
+            <summary>
+            Type custom modifier
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CustomModifier.modreq">
+            <summary>
+            mod req
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.CustomModifier.modopt">
+            <summary>
+            mod opt
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.TypeAttr">
+            <summary>
+            Attibutes for a class
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.FieldAttr">
+            <summary>
+            Attributes for a field
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.MethAttr">
+            <summary>
+            Attributes for a method
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PInvokeAttr">
+            <summary>
+            Attributes for .pinvokeimpl method declarations
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.ImplAttr">
+            <summary>
+            Implementation attributes for a method
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.ParamAttr">
+            <summary>
+            Modes for a parameter
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.GenericParamAttr">
+            <summary>
+            Flags for a generic parameter
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.NetVersion">
+            <summary>
+            Which version of PE file to build
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Op">
+            <summary>
+            CIL instructions
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.IntOp">
+            <summary>
+            CIL instructions requiring an integer parameter
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.FieldOp">
+            <summary>
+            CIL instructions requiring a field parameter
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.MethodOp">
+            <summary>
+            CIL instructions requiring a method parameter
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.TypeOp">
+            <summary>
+            CIL instructions requiring a type parameter
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.BranchOp">
+            <summary>
+            CIL branch instructions
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.MDTable">
+            <summary>
+            Index for all the tables in the meta data
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.FileImage">
+             <summary>
+             Image for a PEFile
+             File Structure
+                 DOS Header (128 bytes) 
+                 PE Signature ("PE\0\0") 
+                 PEFileHeader (20 bytes)
+                 PEOptionalHeader (224 bytes) 
+                 SectionHeaders (40 bytes * NumSections)
+            
+                 Sections .text (always present - contains metadata)
+                          .sdata (contains any initialised data in the file - may not be present)
+                                 (for ilams /debug this contains the Debug table)
+                          .reloc (always present - in pure CIL only has one fixup)
+                           others???  c# produces .rsrc section containing a Resource Table
+            
+             .text layout
+                 IAT (single entry 8 bytes for pure CIL)
+                 CLIHeader (72 bytes)
+                 CIL instructions for all methods (variable size)
+                 MetaData 
+                   Root (20 bytes + UTF-8 Version String + quad align padding)
+                   StreamHeaders (8 bytes + null terminated name string + quad align padding)
+                   Streams 
+                     #~        (always present - holds metadata tables)
+                     #Strings  (always present - holds identifier strings)
+                     #US       (Userstring heap)
+                     #Blob     (signature blobs)
+                     #GUID     (guids for assemblies or Modules)
+                ImportTable (40 bytes)
+                ImportLookupTable(8 bytes) (same as IAT for standard CIL files)
+                Hint/Name Tables with entry "_CorExeMain" for .exe file and "_CorDllMain" for .dll (14 bytes)
+                ASCII string "mscoree.dll" referenced in ImportTable (+ padding = 16 bytes)
+                Entry Point  (0xFF25 followed by 4 bytes 0x400000 + RVA of .text)
+            
+              #~ stream structure
+                Header (24 bytes)
+                Rows   (4 bytes * numTables)
+                Tables
+             </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Feature">
+            <summary>
+            Base class for Event and Property descriptors
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Feature.SetSpecialName">
+            <summary>
+            Set the specialName attribute for this Event or Property
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Feature.SetRTSpecialName">
+            <summary>
+            Set the RTSpecialName attribute for this Event or Property
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Event">
+            <summary>
+            Descriptor for an event
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Property">
+            <summary>
+            Descriptor for the Property of a class
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Property.AddInitValue(QUT.PERWAPI.Constant)">
+            <summary>
+            Add an initial value for this property
+            </summary>
+            <param name="constVal">the initial value for this property</param>
+        </member>
+        <member name="T:QUT.PERWAPI.Assembly">
+            <summary>
+            Descriptor for an assembly (.assembly)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.AddAssemblyInfo(System.Int32,System.Int32,System.Int32,System.Int32,System.Byte[],QUT.PERWAPI.HashAlgorithmType,System.String)">
+            <summary>
+            Add details about an assembly
+            </summary>
+            <param name="majVer">Major Version</param>
+            <param name="minVer">Minor Version</param>
+            <param name="bldNo">Build Number</param>
+            <param name="revNo">Revision Number</param>
+            <param name="key">Hash Key</param>
+            <param name="hash">Hash Algorithm</param>
+            <param name="cult">Culture</param>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.MajorVersion">
+            <summary>
+            Get the major version number for this Assembly
+            </summary>
+            <returns>major version number</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.MinorVersion">
+            <summary>
+            Get the minor version number for this Assembly
+            </summary>
+            <returns>minor version number</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.BuildNumber">
+            <summary>
+            Get the build number for this Assembly
+            </summary>
+            <returns>build number</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.RevisionNumber">
+            <summary>
+            Get the revision number for this Assembly
+            </summary>
+            <returns>revision number</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.Key">
+            <summary>
+            Get the public key for this Assembly
+            </summary>
+            <returns>public key bytes</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.KeyTokenBytes">
+            <summary>
+            Get the public key token for this assembly
+            or null if the assembly is not signed
+            </summary>
+            <returns>Key token or null</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.KeyTokenAsLong">
+            <summary>
+            Returns Public Key Token as Int64
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.HashAlgorithm">
+            <summary>
+            Get the type of the hash algorithm for this Assembly
+            </summary>
+            <returns>hash algorithm type</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.Culture">
+            <summary>
+            Get the culture information for this Assembly
+            </summary>
+            <returns>culture string</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.AddSecurity(QUT.PERWAPI.SecurityAction,System.Byte[])">
+            <summary>
+            Add some security action(s) to this Assembly
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.GetSecurity">
+            <summary>
+            Get the security information for this assembly
+            </summary>
+            <returns>security information</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.HasSecurity">
+            <summary>
+            Check if this assembly has security information
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.SetAssemblyAttr(QUT.PERWAPI.AssemAttr)">
+            <summary>
+            Set the attributes for this assembly
+            </summary>
+            <param name="aa">assembly attribute</param>     
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.AddAssemblyAttr(QUT.PERWAPI.AssemAttr)">
+            <summary>
+            Add an attribute for this assembly
+            </summary>
+            <param name="aa">assembly attribute</param>     
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.AssemblyAttributes">
+            <summary>
+            Get the attributes of this assembly
+            </summary>
+            <returns>assembly attributes</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Assembly.MakeRefOf">
+            <summary>
+            Make an AssemblyRef descriptor for this Assembly
+            </summary>
+            <returns>AssemblyRef descriptor for this Assembly</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.Signature">
+            <summary>
+            Base descriptor for signature blobs
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.CalliSig">
+            <summary>
+            Signature for calli instruction
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.CalliSig.#ctor(QUT.PERWAPI.CallConv,QUT.PERWAPI.Type,QUT.PERWAPI.Type[])">
+            <summary>
+            Create a signature for a calli instruction
+            </summary>
+            <param name="cconv">calling conventions</param>
+            <param name="retType">return type</param>
+            <param name="pars">parameter types</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CalliSig.HasCallConv(QUT.PERWAPI.CallConv)">
+            <summary>
+            Check to see if the method signature has a particular calling convention.
+            </summary>
+            <param name="callCon">The convention to check to see if the method has.</param>
+            <returns>Ture if the calling convention exists on the method.</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.CalliSig.AddVarArgs(QUT.PERWAPI.Type[])">
+            <summary>
+            Add the optional parameters to a vararg method
+            This method sets the vararg calling convention
+            </summary>
+            <param name="optPars">the optional pars for the vararg call</param>
+        </member>
+        <member name="M:QUT.PERWAPI.CalliSig.AddCallingConv(QUT.PERWAPI.CallConv)">
+            <summary>
+            Add extra calling conventions to this callsite signature
+            </summary>
+            <param name="cconv"></param>
+        </member>
+        <member name="P:QUT.PERWAPI.CalliSig.ReturnType">
+            <summary>
+            The return type of the method being called.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.CalliSig.NumPars">
+            <summary>
+            The number of parameters on the method being called.
+            </summary>
+        </member>
+        <member name="P:QUT.PERWAPI.CalliSig.NumOptPars">
+            <summary>
+            The number of optional parameters on the method being called.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.LocalSig">
+            <summary>
+            Descriptor for the locals for a method
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.DebugLocalSig">
+            <summary>
+            Stores the signature for the debug info for a local variable.
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.Field">
+            <summary>
+            Descriptor for a field of a class
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.Field.GetFieldType">
+            <summary>
+            Get the type of this field
+            </summary>
+            <returns>Type descriptor for this field</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.Field.SetFieldType(QUT.PERWAPI.Type)">
+            <summary>
+            Set the type of this field
+            </summary>
+            <param name="ty">The type of the field</param>
+        </member>
+        <member name="T:QUT.PERWAPI.FieldDef">
+            <summary>
+            Descriptor for a field defined in a class of an assembly/module
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.AddFieldAttr(QUT.PERWAPI.FieldAttr)">
+            <summary>
+            Add an attribute(s) to this field
+            </summary>
+            <param name="fa">the attribute(s) to be added</param>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.AddValue(QUT.PERWAPI.Constant)">
+            <summary>
+            Add a value for this field
+            </summary>
+            <param name="val">the value for the field</param>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.GetValue">
+            <summary>
+            Retrieve the initial value for this field
+            </summary>
+            <returns>initial value</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.RemoveValue">
+            <summary>
+            Remove the initial value from this field
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.AddDataValue(QUT.PERWAPI.DataConstant)">
+            <summary>
+            Add an initial value for this field (at dataLabel) (.data)
+            </summary>
+            <param name="val">the value for the field</param>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.GetDataValue">
+            <summary>
+            Get the value for this data constant
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.RemoveDataValue">
+            <summary>
+            Delete the value of this data constant
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.SetOffset(System.UInt32)">
+            <summary>
+            Set the offset of the field.  Used for sequential or explicit classes.
+            (.field [offs])
+            </summary>
+            <param name="offs">field offset</param>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.GetOffset">
+            <summary>
+            Return the offset for this data constant
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.RemoveOffset">
+            <summary>
+            Delete the offset of this data constant
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.HasOffset">
+            <summary>
+            Does this data constant have an offset?
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.SetMarshalType(QUT.PERWAPI.NativeType)">
+            <summary>
+            Set the marshalling info for a field
+            </summary>
+            <param name="mType"></param>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.RefOf">
+            <summary>
+            Get the FieldRef equivalent to this FieldDef.  Assumes that
+            one already exists.
+            </summary>
+            <returns>FieldRef for this FieldDef</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.FieldDef.MakeRefOf">
+            <summary>
+            Create the FieldRef equivalent to this FieldDef.  If one does not
+            exist then create it.
+            </summary>
+            <returns>FieldRef for this FieldDef</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.FieldRef">
+            <summary>
+            Descriptor for a field of a class defined in another assembly/module
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.FieldLayout">
+            <summary>
+            Descriptor for layout information for a field
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.FieldMarshal">
+            <summary>
+            Marshalling information for a field or param
+            </summary>
+        </member>
+        <member name="T:QUT.PERWAPI.PEResourceElement">
+            <summary>
+            (Unmanaged) Resource Elements consist of PEResourceDirectories
+            or PEResourceData elements.  Resource directories may be nested up
+            to three deep sorted on Type, Name and Language in that order.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PEResourceElement.Write(System.IO.BinaryWriter,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Write out the unmanaged resource data.
+            </summary>
+            <param name="dest">The Binary Writer</param>
+            <param name="baseOffset">File position at start of .rsrc section</param>
+            <param name="RVA">RVA of .rsrc section when loaded</param>
+        </member>
+        <member name="T:QUT.PERWAPI.PEResourceDirectory">
+            <summary>
+            ResourceDirectory entries, as defined in Winnt.h
+            as type struct _IMAGE_RESOURCE_DIRECTORY.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PEResourceDirectory.#ctor">
+            <summary>
+            Programmatically create unmanaged resource.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PEResourceDirectory.PopulateResourceDirectory(QUT.PERWAPI.PEReader,System.Int64)">
+            <summary>
+            Read unmanged resource directory structure from PE-file.
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="F:QUT.PERWAPI.PEResourceDirectory.subSize">
+            <summary>
+            Total file-space size of all child elements
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.PEResourceDirectory.nameSize">
+            <summary>
+            File-space needed for all names of this directory
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.PEResourceDirectory.dirSize">
+            <summary>
+            File-space taken up by this directory
+            </summary>
+        </member>
+        <member name="F:QUT.PERWAPI.PEResourceDirectory.numNamed">
+            <summary>
+            Number of named elements.  These come first in list.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.PEResourceDirectory.Write(System.IO.BinaryWriter,System.UInt32)">
+            <summary>
+            Write out the unmanaged resource rooted at this directory.
+            </summary>
+            <param name="dest">The Binary Writer</param>
+            <param name="RVA">RVA of this .rsrc section</param>
+        </member>
+        <member name="M:QUT.PERWAPI.PEResourceData.PopulateResourceData(QUT.PERWAPI.PEReader,System.Int64)">
+            <summary>
+            Read the binary data from the PE file.
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="T:QUT.PERWAPI.ClassRef">
+            <summary>
+            Descriptor for a class/interface declared in another module of THIS 
+            assembly, or in another assembly.
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.AddMethod(System.String,QUT.PERWAPI.Type,QUT.PERWAPI.Type[])">
+            <summary>
+            Add a method to this class
+            </summary>
+            <param name="name">method name</param>
+            <param name="retType">return type</param>
+            <param name="pars">parameter types</param>
+            <returns>a descriptor for this method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.AddMethod(System.String,QUT.PERWAPI.GenericParam[],QUT.PERWAPI.Type,QUT.PERWAPI.Type[])">
+            <summary>
+            Add a method to this class
+            </summary>
+            <param name="name">method name</param>
+            <param name="genPars">generic parameters</param>
+            <param name="retType">return type</param>
+            <param name="pars">parameter types</param>
+            <returns>a descriptor for this method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.AddVarArgMethod(System.String,QUT.PERWAPI.Type,QUT.PERWAPI.Type[],QUT.PERWAPI.Type[])">
+            <summary>
+            Add a method to this class
+            </summary>
+            <param name="name">method name</param>
+            <param name="retType">return type</param>
+            <param name="pars">parameter types</param>
+            <param name="optPars">optional parameter types</param>
+            <returns>a descriptor for this method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.AddVarArgMethod(System.String,QUT.PERWAPI.GenericParam[],QUT.PERWAPI.Type,QUT.PERWAPI.Type[],QUT.PERWAPI.Type[])">
+            <summary>
+            Add a method to this class
+            </summary>
+            <param name="name">method name</param>
+            <param name="genPars">generic parameters</param>
+            <param name="retType">return type</param>
+            <param name="pars">parameter types</param>
+            <param name="optPars">optional parameter types</param>
+            <returns>a descriptor for this method</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.GetMethod(System.String)">
+            <summary>
+            Get the method "name" for this class
+            </summary>
+            <param name="name">The method name</param>
+            <returns>Descriptor for the method "name" for this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.GetMethod(System.String,QUT.PERWAPI.Type[])">
+            <summary>
+            Get the method "name(parTypes)" for this class
+            </summary>
+            <param name="name">Method name</param>
+            <param name="parTypes">Method signature</param>
+            <returns>Descriptor for "name(parTypes)"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.GetMethod(System.String,QUT.PERWAPI.Type[],QUT.PERWAPI.Type[])">
+            <summary>
+            Get the vararg method "name(parTypes,optTypes)" for this class
+            </summary>
+            <param name="name">Method name</param>
+            <param name="parTypes">Method parameter types</param>
+            <param name="optTypes">Optional parameter types</param>
+            <returns>Descriptor for "name(parTypes,optTypes)"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.GetMethods(System.String)">
+            <summary>
+            Get the descriptors for the all methods name "name" for this class
+            </summary>
+            <param name="name">Method name</param>
+            <returns>List of methods called "name"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.GetMethods">
+            <summary>
+            Get all the methods for this class
+            </summary>
+            <returns>List of methods for this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.AddField(System.String,QUT.PERWAPI.Type)">
+            <summary>
+            Add a field to this class
+            </summary>
+            <param name="name">field name</param>
+            <param name="fType">field type</param>
+            <returns>a descriptor for this field</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.GetField(System.String)">
+            <summary>
+            Get the descriptor for the field "name" for this class
+            </summary>
+            <param name="name">Field name</param>
+            <returns>Descriptor for field "name"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.GetFields">
+            <summary>
+            Get all the fields for this class
+            </summary>
+            <returns>List of fields for this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.AddNestedClass(System.String)">
+            <summary>
+            Add a nested class to this class
+            </summary>
+            <param name="name">Nested class name</param>
+            <returns>Descriptor for the nested class "name"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.GetNestedClass(System.String)">
+            <summary>
+            Get the nested class "name"
+            </summary>
+            <param name="name">Nestec class name</param>
+            <returns>Descriptor for the nested class "name"</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.MakeExported">
+            <summary>
+            Make this Class exported from an Assembly (ie. add to ExportedType table)
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.ClassRef.GetScope">
+            <summary>
+            Get the scope or "parent" of this ClassRef (either ModuleRef or AssemblyRef)
+            </summary>
+            <returns>Descriptor for the scope containing this class</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.NestedClassRef">
+            <summary>
+            Descriptor for a reference to a Nested Class
+            </summary>
+        </member>
+        <member name="M:QUT.PERWAPI.NestedClassRef.GetScope">
+            <summary>
+            Get the scope of this ClassRef (either ModuleRef or AssemblyRef)
+            </summary>
+            <returns>Descriptor for the scope containing this class</returns>
+        </member>
+        <member name="M:QUT.PERWAPI.NestedClassRef.GetParentClass">
+            <summary>
+            Get the parent (enclosing ClassRef) for this nested class
+            </summary>
+            <returns>Enclosing class descriptor</returns>
+        </member>
+        <member name="T:QUT.PERWAPI.SystemClass">
+            <summary>
+            Descriptor for a class defined in System (mscorlib)
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,337 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QUT.SymbolRW</name>
+    </assembly>
+    <members>
+        <member name="M:QUT.Symbols.SymbolReader.#ctor(System.String)">
+            <summary>
+            Constructor for SymbolReader.
+            Just creates a reference to the unmanaged reader
+            from the COM world.  This Reader only implements
+            the method(s) required by PERWAPI.
+            </summary>
+            <param name="filename"></param>
+        </member>
+        <member name="M:QUT.Symbols.SymbolReader.GetMethod(System.Diagnostics.SymbolStore.SymbolToken)">
+            <summary>
+            This is the only SymbolReader method required by PERWAPI
+            at this stage.
+            </summary>
+            <param name="tok">The metadata token</param>
+            <returns>The SymbolMethod object for the token</returns>
+        </member>
+        <member name="M:QUT.Symbols.SymbolReader.GetMethodFromDocumentPosition(System.Diagnostics.SymbolStore.ISymbolDocument,System.Int32,System.Int32)">
+            <summary>
+            Gets the method that contains a specified position of the document
+            </summary>
+            <param name="document">The document object</param>
+            <param name="line">Source line number</param>
+            <param name="column">Source column number</param>
+            <returns>The chosen method</returns>
+        </member>
+        <member name="P:QUT.Symbols.SymbolReader.UserEntryPoint">
+            <summary>
+            Gets user entry point for a reader.
+            Returns null if reader is attached to a PE-file
+            that does not have an entry point.
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.SymbolMethod">
+            <summary>
+            This is the managed wrapper for the unmanaged
+            Method descriptor.  This implements the interface
+            System.Diagnostics.SymbolStore.ISymbolMethod
+            </summary>
+        </member>
+        <member name="M:QUT.Symbols.SymbolMethod.GetNamespace">
+            <summary>
+            Gets the namespace for the method
+            </summary>
+            <returns>The namespace object</returns>
+        </member>
+        <member name="M:QUT.Symbols.SymbolMethod.GetParameters">
+            <summary>
+            Gets the parameters of the method
+            </summary>
+            <returns>The method parameters</returns>
+        </member>
+        <member name="M:QUT.Symbols.SymbolMethod.GetSequencePoints(System.Int32[],System.Diagnostics.SymbolStore.ISymbolDocument[],System.Int32[],System.Int32[],System.Int32[],System.Int32[])">
+            <summary>
+            Gets the sequence points defined for this method
+            </summary>
+            <param name="offsets">array of IL offsets</param>
+            <param name="documents">array of documents</param>
+            <param name="lines">start line number array</param>
+            <param name="columns">start column number array</param>
+            <param name="endLines">end line number array</param>
+            <param name="endColumns">start line number array</param>
+        </member>
+        <member name="P:QUT.Symbols.SymbolMethod.RootScope">
+            <summary>
+            Gets the root scope of the method
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolMethod.SequencePointCount">
+            <summary>
+            Gets the sequence point count for the method
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolMethod.Token">
+            <summary>
+            Gets the symbol token for the method
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.SymbolScope">
+            <summary>
+            This class is a managed wrapper for the unmanaged
+            Scope descriptor.  The defintions for ISymbolScope
+            come from metadata.
+            </summary>
+        </member>
+        <member name="M:QUT.Symbols.SymbolScope.GetChildren">
+            <summary>
+            Returns the child lexical scopes of the current lexical scope.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QUT.Symbols.SymbolScope.GetLocals">
+            <summary>
+            Gets the local variables within the current lexical scope
+            </summary>
+            <returns>The local variables of the current scope</returns>
+        </member>
+        <member name="M:QUT.Symbols.SymbolScope.GetNamespaces">
+            <summary>
+            Gets the namespaces that are used within the current scope
+            </summary>
+            <returns>The namespaces that are used within the current scope</returns>
+        </member>
+        <member name="P:QUT.Symbols.SymbolScope.EndOffset">
+            <summary>
+            Returns the end offset of the wrapped scope
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolScope.Method">
+            <summary>
+            Returns the method that contains the current lexical scope
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolScope.Parent">
+            <summary>
+            Returns the parent lexical scope of the current scope
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolScope.StartOffset">
+            <summary>
+            Returns the start offset of the current lexical scope
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.SymbolNamespace">
+            <summary>
+            Managed wrapper for ISymUnmanagedNamespace
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.SymbolDocument">
+            <summary>
+            Managed wrapper for ISymUnmanagedDocument
+            </summary>
+        </member>
+        <member name="M:QUT.Symbols.SymbolDocument.#ctor(QUT.Symbols.ISymUnmanagedDocument)">
+            <summary>
+            Constructor for SymbolDocument
+            </summary>
+            <param name="unDoc"></param>
+        </member>
+        <member name="M:QUT.Symbols.SymbolDocument.FindClosestLine(System.Int32)">
+            <summary>
+            Gets the closest line that has a sequence point
+            </summary>
+            <param name="line">A line in the document</param>
+            <returns>The closest line with a sequence point</returns>
+        </member>
+        <member name="M:QUT.Symbols.SymbolDocument.GetCheckSum">
+            <summary>
+            Gets the checksum
+            </summary>
+            <returns>The checksum</returns>
+        </member>
+        <member name="P:QUT.Symbols.SymbolDocument.WrappedDoc">
+            <summary>
+            Gets the wrapped document
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolDocument.CheckSumAlgorithmId">
+            <summary>
+            Returns a GUID identifying the checksum algorithm.
+            Returns Guid.Zero if there is no checksum.
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolDocument.DocumentType">
+            <summary>
+            Gets the document type guid
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolDocument.HasEmbeddedSource">
+            <summary>
+            Value is true if document is stored in the symbol store, otherwise false.
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolDocument.Language">
+            <summary>
+            Gets the language guid
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolDocument.LanguageVendor">
+            <summary>
+            Gets the language vendor guid
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolDocument.SourceLength">
+            <summary>
+            Gets the source length of the current document
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolDocument.URL">
+            <summary>
+            Gets the URL of the current document
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.SymbolVariable">
+            <summary>
+            Managed wrapper for ISymUnmanagedVariable
+            </summary>
+        </member>
+        <member name="M:QUT.Symbols.SymbolVariable.GetSignature">
+            <summary>
+            Gets the variable signature
+            </summary>
+            <returns>The signature blob</returns>
+        </member>
+        <member name="P:QUT.Symbols.SymbolVariable.AddressField1">
+            <summary>
+            Gets the first address of the variable
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolVariable.AddressField2">
+            <summary>
+            Gets the second address of the variable
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolVariable.AddressField3">
+            <summary>
+            Gets the third address of the variable
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolVariable.AddressKind">
+            <summary>
+            Gets the type of the address. The result is a
+            System.Diagnostics.SymbolStore.SymAddressKind
+            enumeration value.
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolVariable.Attributes">
+            <summary>
+            Gets the variable attributes
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolVariable.EndOffset">
+            <summary>
+            Gets the end offset of the variable
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolVariable.Name">
+            <summary>
+            Gets the name of the variable
+            </summary>
+        </member>
+        <member name="P:QUT.Symbols.SymbolVariable.StartOffset">
+            <summary>
+            Gets the start offset of the variable
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.IMetadataImport">
+            <summary>
+            This is really just a hook to hang the GUID on,
+            so that we can pass "typeof(IMetadataImport)" 
+            to Marshal.GetComInterfaceForObject()
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.ISymUnmanagedMethod">
+            <summary>
+            Helper interface for the managed reader.
+            This is based on the interface of the same name
+            defined in the C++ header file corsym.h
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.ISymUnmanagedBinder">
+            <summary>
+            This definition is a hook for the COM interface.
+            We use [PreserveSig] to call the bare function
+            returning an HRESULT.  We only need GetReaderForFile()
+            which is in the first slot of the vtable.
+            
+            The definition is in C++ header corsym.h
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.ISymUnmanagedReader">
+            <summary>
+            This interface is a minimal cover of  the interface
+            of the same name defined in C++ header corsym.h
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.IMetaDataDispenserSubset">
+            <summary>
+            A minimal subset of the COM IMetaDataDispenser interface
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.ISymUnmanagedVariable">
+            <summary>
+            This interface is defined in C++ header corsym.h
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.ISymUnmanagedDocument">
+            <summary>
+            This interface defined in C++ header file CorSym.h
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.ISymUnmanagedScope">
+            <summary>
+            This interface defined in C++ header file CorSym.h
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.ISymUnmanagedNamespace">
+            <summary>
+            This interface defined in C++ header file CorSym.h
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.ISymUnmanagedWriter2">
+            <summary>
+            This interface is a minimal cover of  the interface
+            of the same name defined in C++ header corsym.h
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.ISymUnmanagedDocumentWriter">
+            <summary>
+            This interface is a minimal cover of  the interface
+            of the same name defined in C++ header corsym.h
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.OLE32">
+            <summary>
+            PInvoke hook to call COM CoCreateInstance.
+            Plus any useful constants...
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.XGuid">
+            <summary>
+            Some external guids, defined in cor.h, mainly
+            </summary>
+        </member>
+        <member name="T:QUT.Symbols.Util">
+            <summary>
+            Some static helper methods
+            </summary>
+        </member>
+    </members>
+</doc>
