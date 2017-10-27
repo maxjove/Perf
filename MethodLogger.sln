@@ -1,13 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MethodLogger", "MethodLogger\MethodLogger.csproj", "{D330B9AF-618F-4407-83F2-7B9D45A54DCB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MethodExecLoggerLib", "MethodExecLoggerLib\MethodExecLoggerLib.csproj", "{1DE50BC9-51A2-48FA-BD3B-267BC2FA49FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp3", "ConsoleApp3\ConsoleApp3.csproj", "{509487B7-ED57-43E5-B389-40A69A06E4E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PERWAPI", "..\..\Perwapi-1.1.4\Perwapi-1.1.4.53604\VS-Project\PERWAPI\PERWAPI.csproj", "{6E89897A-ECB1-460E-976E-A14179524F81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymbolRW", "..\..\Perwapi-1.1.4\Perwapi-1.1.4.53604\VS-Project\SymbolRW\SymbolRW.csproj", "{2BC469D1-46DA-4FBF-A431-6B1344BBCD23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DllTest", "DllTest\DllTest.csproj", "{228F793E-8A21-444C-B840-D33678F421D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +33,18 @@ Global
 		{509487B7-ED57-43E5-B389-40A69A06E4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{509487B7-ED57-43E5-B389-40A69A06E4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{509487B7-ED57-43E5-B389-40A69A06E4E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E89897A-ECB1-460E-976E-A14179524F81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E89897A-ECB1-460E-976E-A14179524F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E89897A-ECB1-460E-976E-A14179524F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E89897A-ECB1-460E-976E-A14179524F81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BC469D1-46DA-4FBF-A431-6B1344BBCD23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BC469D1-46DA-4FBF-A431-6B1344BBCD23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BC469D1-46DA-4FBF-A431-6B1344BBCD23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BC469D1-46DA-4FBF-A431-6B1344BBCD23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{228F793E-8A21-444C-B840-D33678F421D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{228F793E-8A21-444C-B840-D33678F421D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{228F793E-8A21-444C-B840-D33678F421D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{228F793E-8A21-444C-B840-D33678F421D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

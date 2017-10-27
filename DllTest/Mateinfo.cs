@@ -1,31 +1,19 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 using System.Text;
 
-namespace ConsoleApp3
+namespace DllTest
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("开始运行");
-           
-                Mateinfo mi = new Mateinfo();
-                mi.funA("");
-                mi.funB();
-               
-          
-           
-            Console.ReadLine();
-        }
-    }
     class Mateinfo
     {
-        string Name ="住院记账";
+        public static void GH()
+        {
+            Console.WriteLine("这是方法GH()");
+            string strnul = null;
+            strnul.ToLower();
+            Console.WriteLine(strnul);
+        }
+        string Name = "住院记账";
         public void funA(string hd)
         {
             //MethodExecLogger.MethodStarted("ConsoleApp3.Mateinfo", "funA", "System.String hd2");
@@ -48,7 +36,4 @@ namespace ConsoleApp3
         }
 
     }
-   
-   
-
 }

@@ -142,7 +142,10 @@ namespace MethodLogger
                 if (directoryName != null)
                     Environment.CurrentDirectory = directoryName;
             }
-
+            //QUT.PERWAPI.UIntConst unst = new UIntConst()
+            //unst.GetULongAsLong();
+            //QUT.PERWAPI.per
+            Diag.DiagOn = true;
             PEFile file = PEFile.ReadPEFile(inputFile);
 
             Method startLogMethod, endLogMethod;
@@ -151,8 +154,8 @@ namespace MethodLogger
                 ShowHelp("未成功获取注入内容!");
                 return;
             }
-           
 
+            
             ClassDef[] classes = file.GetClasses();
             
             System.Array.ForEach(classes, delegate(ClassDef classDef)
@@ -191,6 +194,9 @@ namespace MethodLogger
             string methodNameString = methodDef.Name();
             string paramsString = MethodLoggerUtil.GetParamsAsString(methodDef.GetParams());
 
+            List<Local> CLRLocals = new List<Local>();
+            CLRLocals.Clear();
+
             Param[] parms = methodDef.GetParams();
 
             // We'll be pushing typeName, methodName and parameters as string parameters, so set max stack size to 3.
@@ -200,13 +206,22 @@ namespace MethodLogger
             }
             string strGuid = Guid.NewGuid().ToString();
             CILInstructions instructions = methodDef.GetCodeBuffer();
+            //PDBVariable= methodDef.get
 
-           
+            
+
+
+
+
             instructions.StartInsert();
-            //instructions.Inst(Op.nop);
-            //instructions.Inst(Op.nop);
+            
+            
+            instructions.Inst(Op.nop);
             instructions.StartBlock(); // Try #1
             instructions.StartBlock(); // Try #2
+            instructions.Inst(Op.nop);
+
+           
 
 
 
@@ -220,37 +235,105 @@ namespace MethodLogger
             instructions.ldstr(methodNameString);
             instructions.ldstr(paramsString);
             instructions.MethInst(MethodOp.call, startLogMethod);
-
-
-      
-
-
             instructions.EndInsert();
 
 
             while (instructions.GetNextInstruction().GetPos() < instructions.NumInstructions() - 2) ;
+            
+            
+           
+           
+            instructions.StartInsert();
+            instructions.Inst(Op.nop);
+            CILLabel cel0 = instructions.NewLabel();
+            CILLabel cel9 = instructions.NewLabel();
+            instructions.Branch(BranchOp.leave_s, cel9);
 
             TryBlock tBlk2 = instructions.EndTryBlock(); // #2
-            instructions.StartBlock(); // Catch
-            //ClassRef clsrf = MethodLoggerUtil.GetClass("");
-            //instructions.EndCatchBlock(clsrf, tBlk2);
+            instructions.StartBlock();
+            int istloc = 0;
+            if (methodDef.GetLocals() != null)
+            {
+                istloc = methodDef.GetLocals().Length ;
+            }
+            instructions.IntInst(IntOp.stloc_s, istloc);
+            instructions.Inst(Op.nop);
+            //instructions.Inst(Op.rethrow);
+
+            CILLabel cel = instructions.NewLabel();
+     
+           
+
+            instructions.CodeLabel(cel0);
+
+
+
+            instructions.OpenScope();
+
+            Local loc = new Local("yyy", Runtime.SystemExceptionRef);
+            if (methodDef.GetLocals() != null)
+            {
+                foreach (Local lab in methodDef.GetLocals())
+                {
+                    CLRLocals.Add(lab);
+                }
+            }
+            CLRLocals.Add(loc);
+           
+            methodDef.AddLocals(CLRLocals.ToArray(), false);
+            foreach (Local la in methodDef.GetLocals())
+            {
+                instructions.BindLocal(la);
+            }
+            
+            instructions.CloseScope();
+            //instructions.Inst(Op.ldloc_0);
+            instructions.IntInst(IntOp.ldloc_s, istloc);
+            Method LogException = null;
+            MethodLoggerUtil.GetMethodsFromClass("LogException", out LogException);
+            instructions.MethInst(MethodOp.call, LogException);
+            instructions.Inst(Op.nop);
+            instructions.Inst(Op.nop);
+            instructions.Branch(BranchOp.leave_s, cel9);
+            instructions.EndCatchBlock(Runtime.SystemExceptionRef, tBlk2);
+            
+            
+            instructions.CodeLabel(cel9);
+            instructions.Branch(BranchOp.leave_s, cel);
+            
+
+            
+           
+            //Local ll= new Local("er",QUT.PERWAPI.InstructionException)
+            //instructions.a
+            
+            //instructions.StartBlock();
             TryBlock tBlk1 = instructions.EndTryBlock(); // #1
             instructions.StartBlock(); // Finally
-            instructions.StartInsert();
+            instructions.Inst(Op.nop);
+         
+            
 
-           
-            instructions.StartBlock();
+            //instructions.StartBlock();
 
             instructions.ldstr(strGuid);
             instructions.ldstr(classNameString);
             instructions.ldstr(methodNameString);
             instructions.ldstr(paramsString);
             instructions.MethInst(MethodOp.call, endLogMethod);
+            instructions.Inst(Op.nop);
+            instructions.Inst(Op.nop);
+            instructions.Inst(Op.endfinally);
 
-      
-
-            instructions.EndInsert();
             instructions.EndFinallyBlock(tBlk1);
+            instructions.CodeLabel(cel);
+
+           
+           
+            instructions.EndInsert();
+        
+            
+
         }
     }
 }

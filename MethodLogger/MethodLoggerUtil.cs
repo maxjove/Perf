@@ -67,6 +67,7 @@ namespace MethodLogger
                 strClassName = "MethodExecLogger";
             string str1 = Process.GetCurrentProcess().MainModule.FileName;
             Console.WriteLine(str1);
+           
             PEFile file = PEFile.ReadPEFile(str1);
             string Assemblyname = System.IO.Path.GetFileNameWithoutExtension(str1); ;
             AssemblyRef newAssemblyRef = file.MakeExternAssembly(Assemblyname);

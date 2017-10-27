@@ -9,7 +9,7 @@ namespace MethodLogger
         public static void MethodStarted(string strGuid,string typeName,
                    string methodName, string args)
         {
-            Console.WriteLine("Invok Pk:" + strGuid);
+           /// Console.WriteLine("Invok Pk:" + strGuid);
             Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff") + " Start of " + typeName + "." +
                               methodName + "(" + args + ")");
         }
@@ -17,7 +17,7 @@ namespace MethodLogger
         public static void MethodCompleted(string strGuid,string typeName,
                            string methodName, string args)
         {
-            Console.WriteLine("Invok Pk:" + strGuid);
+           // Console.WriteLine("Invok Pk:" + strGuid);
             Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff") + " End of " + typeName + "." +
                               methodName + "(" + args + ")");
         }
@@ -25,8 +25,10 @@ namespace MethodLogger
         {
             return Guid.NewGuid().ToString();
         }
+        public static void LogException(Exception ex)
+        {
+            ExceptionLogger.LogException(ex);
+        }
     }
-    public class Myexce : Exception
-    {
-    }
+
 }
