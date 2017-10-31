@@ -1,8 +1,7 @@
+using QUT.PERWAPI;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
-using QUT.PERWAPI;
 
 namespace MethodLogger
 {
@@ -145,7 +144,7 @@ namespace MethodLogger
             //QUT.PERWAPI.UIntConst unst = new UIntConst()
             //unst.GetULongAsLong();
             //QUT.PERWAPI.per
-            Diag.DiagOn = true;
+           
             PEFile file = PEFile.ReadPEFile(inputFile);
 
             Method startLogMethod, endLogMethod;
@@ -155,7 +154,7 @@ namespace MethodLogger
                 return;
             }
 
-            
+            //Diag.DiagOn = true;
             ClassDef[] classes = file.GetClasses();
             
             System.Array.ForEach(classes, delegate(ClassDef classDef)
@@ -163,11 +162,15 @@ namespace MethodLogger
                 ProcessClass(classDef, startLogMethod, endLogMethod);
             });
 
-            file.WritePEFile(true);
+            file.WritePEFile(false);
+            Console.WriteLine("Processe end ,any key exit");
+            Console.ReadKey();
+
         }
 
         static void ProcessClass(ClassDef classDef, Method startLogMethod, Method endLogMethod)
         {
+            
             // Don't modify the class methods that we are going to emit calls to, otherwise we'll get unbounded recursion.
             //if (classDef.Name() == methodLoggerClassName)
             //    return;
@@ -179,10 +182,10 @@ namespace MethodLogger
             {
                 ProcessClass(c, startLogMethod, endLogMethod);
             }
-
+            Console.WriteLine("Processing  Class:" + classDef.Name());
             foreach (MethodDef methodDef in classDef.GetMethods())
             {
-                if (methodDef.Name().ToLower() == "main"|| methodDef.Name().ToLower() == ".ctor")
+                if ( methodDef.Name().ToLower() == ".ctor" || methodDef.Name().ToLower() == "Dispose" || methodDef.Name().ToLower() == "InitializeComponent")
                     continue;
                 ModifyCode(classDef, methodDef, startLogMethod, endLogMethod);
             }
@@ -190,150 +193,23 @@ namespace MethodLogger
 
         static void ModifyCode(ClassDef classDef, MethodDef methodDef, Method startLogMethod, Method endLogMethod)
         {
-            string classNameString = MethodLoggerUtil.GetQualifiedClassName(classDef);
-            string methodNameString = methodDef.Name();
-            string paramsString = MethodLoggerUtil.GetParamsAsString(methodDef.GetParams());
+            if (methodDef is null)
+                return;
+            bool bIsHavReturn = methodDef.GetRetType().TypeName().ToLower() != "void";
 
-            List<Local> CLRLocals = new List<Local>();
-            CLRLocals.Clear();
-
-            Param[] parms = methodDef.GetParams();
-
-            // We'll be pushing typeName, methodName and parameters as string parameters, so set max stack size to 3.
-            if (methodDef.GetMaxStack() < 3)
+            Console.WriteLine("Processing  Method:" + classDef.Name() + "." + methodDef.Name() + "  Return Type: " + methodDef.GetRetType().TypeName());
+            if (!bIsHavReturn)
             {
-                methodDef.SetMaxStack(3);
+                ILSY.ILSpyMtNoRt(classDef, methodDef, startLogMethod, endLogMethod);
             }
-            string strGuid = Guid.NewGuid().ToString();
-            CILInstructions instructions = methodDef.GetCodeBuffer();
-            //PDBVariable= methodDef.get
-
-            
-
-
-
-
-            instructions.StartInsert();
-            
-            
-            instructions.Inst(Op.nop);
-            instructions.StartBlock(); // Try #1
-            instructions.StartBlock(); // Try #2
-            instructions.Inst(Op.nop);
-
-           
-
-
-
-            ////Method NewGuid = null;
-            ////MethodLoggerUtil.GetMethodsFromClass("GetNewGuid", out NewGuid);
-            ////instructions.MethInst(MethodOp.call, NewGuid);
-            ////instructions.Inst(Op.stloc_1);
-
-            instructions.ldstr(strGuid);
-            instructions.ldstr(classNameString);
-            instructions.ldstr(methodNameString);
-            instructions.ldstr(paramsString);
-            instructions.MethInst(MethodOp.call, startLogMethod);
-            instructions.EndInsert();
-
-
-            while (instructions.GetNextInstruction().GetPos() < instructions.NumInstructions() - 2) ;
-            
-            
-           
-           
-            instructions.StartInsert();
-            instructions.Inst(Op.nop);
-            CILLabel cel0 = instructions.NewLabel();
-            CILLabel cel9 = instructions.NewLabel();
-            instructions.Branch(BranchOp.leave_s, cel9);
-
-            TryBlock tBlk2 = instructions.EndTryBlock(); // #2
-            instructions.StartBlock();
-            int istloc = 0;
-            if (methodDef.GetLocals() != null)
+            else
             {
-                istloc = methodDef.GetLocals().Length ;
+                ILSY.ILSpyMtHvRt(classDef, methodDef, startLogMethod, endLogMethod);
             }
-            instructions.IntInst(IntOp.stloc_s, istloc);
-            instructions.Inst(Op.nop);
-            //instructions.Inst(Op.rethrow);
 
-            CILLabel cel = instructions.NewLabel();
-     
-           
-
-            instructions.CodeLabel(cel0);
-
-
-
-            instructions.OpenScope();
-
-            Local loc = new Local("yyy", Runtime.SystemExceptionRef);
-            if (methodDef.GetLocals() != null)
-            {
-                foreach (Local lab in methodDef.GetLocals())
-                {
-                    CLRLocals.Add(lab);
-                }
-            }
-            CLRLocals.Add(loc);
-           
-            methodDef.AddLocals(CLRLocals.ToArray(), false);
-            foreach (Local la in methodDef.GetLocals())
-            {
-                instructions.BindLocal(la);
-            }
-            
-            instructions.CloseScope();
-            //instructions.Inst(Op.ldloc_0);
-            instructions.IntInst(IntOp.ldloc_s, istloc);
-            Method LogException = null;
-            MethodLoggerUtil.GetMethodsFromClass("LogException", out LogException);
-            instructions.MethInst(MethodOp.call, LogException);
-            instructions.Inst(Op.nop);
-            instructions.Inst(Op.nop);
-            instructions.Branch(BranchOp.leave_s, cel9);
-            instructions.EndCatchBlock(Runtime.SystemExceptionRef, tBlk2);
-            
-            
-            instructions.CodeLabel(cel9);
-            instructions.Branch(BranchOp.leave_s, cel);
-            
-
-            
-           
-            //Local ll= new Local("er",QUT.PERWAPI.InstructionException)
-            //instructions.a
-            
-            //instructions.StartBlock();
-            TryBlock tBlk1 = instructions.EndTryBlock(); // #1
-            instructions.StartBlock(); // Finally
-            instructions.Inst(Op.nop);
-         
-            
-
-            //instructions.StartBlock();
-
-            instructions.ldstr(strGuid);
-            instructions.ldstr(classNameString);
-            instructions.ldstr(methodNameString);
-            instructions.ldstr(paramsString);
-            instructions.MethInst(MethodOp.call, endLogMethod);
-            instructions.Inst(Op.nop);
-            instructions.Inst(Op.nop);
-            instructions.Inst(Op.endfinally);
-
-            instructions.EndFinallyBlock(tBlk1);
-            instructions.CodeLabel(cel);
-
-           
-           
-            instructions.EndInsert();
-        
-            
 
         }
+
+      
     }
 }

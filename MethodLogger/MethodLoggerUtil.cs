@@ -66,7 +66,7 @@ namespace MethodLogger
             if (string.IsNullOrEmpty(strClassName))
                 strClassName = "MethodExecLogger";
             string str1 = Process.GetCurrentProcess().MainModule.FileName;
-            Console.WriteLine(str1);
+            //Console.WriteLine(str1);
            
             PEFile file = PEFile.ReadPEFile(str1);
             string Assemblyname = System.IO.Path.GetFileNameWithoutExtension(str1); ;
@@ -81,7 +81,7 @@ namespace MethodLogger
             if (string.IsNullOrEmpty(strClassName))
                 strClassName = "Myexce";
             string str1 = Process.GetCurrentProcess().MainModule.FileName;
-            Console.WriteLine(str1);
+            //Console.WriteLine(str1);
             PEFile file = PEFile.ReadPEFile(str1);
             string Assemblyname = System.IO.Path.GetFileNameWithoutExtension(str1); ;
             AssemblyRef newAssemblyRef = file.MakeExternAssembly(Assemblyname);
@@ -235,7 +235,7 @@ namespace MethodLogger
                 fileName = assemblyRef.Name();
             else 
              fileName = assemblyRef.Name() + ".exe";
-            Console.WriteLine("TryGetMethodLoggerFromAssembly ->" + fileName);
+            //Console.WriteLine("TryGetMethodLoggerFromAssembly ->" + fileName);
             if (!System.IO.File.Exists(fileName))
             {
                 Console.WriteLine(fileName + " not present in current directory. Skipping it in search");

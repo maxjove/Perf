@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="ClassFilter.cs" />
     <Compile Include="ExceptionLogger.cs" />
+    <Compile Include="ILSY.cs" />
     <Compile Include="MethodExecLogger.cs" />
     <Compile Include="MethodLoggerUtil.cs" />
     <Compile Include="Program.cs" />
