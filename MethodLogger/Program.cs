@@ -133,8 +133,9 @@ namespace MethodLogger
 
         private static void ProcessFile(string inputFile)
         {
-            Console.WriteLine("Processing  File : " + inputFile);
 
+            Console.WriteLine("Processing  File : " + inputFile);
+           
             if (Directory.Exists(inputFile))
             {
                 string directoryName = Path.GetDirectoryName(inputFile);
@@ -185,7 +186,7 @@ namespace MethodLogger
             Console.WriteLine("Processing  Class:" + classDef.Name());
             foreach (MethodDef methodDef in classDef.GetMethods())
             {
-                if ( methodDef.Name().ToLower() == ".ctor" || methodDef.Name().ToLower() == "Dispose" || methodDef.Name().ToLower() == "InitializeComponent")
+                if ( methodDef.Name().ToLower() == ".ctor" || methodDef.Name().ToLower() == "dispose" || methodDef.Name().ToLower() == "initializecomponent")
                     continue;
                 ModifyCode(classDef, methodDef, startLogMethod, endLogMethod);
             }

@@ -149,7 +149,7 @@ namespace MethodLogger
 
         internal static void ILSpyMtHvRt(ClassDef classDef, MethodDef methodDef, Method startLogMethod, Method endLogMethod)
         {
-            
+
             string classNameString = MethodLoggerUtil.GetQualifiedClassName(classDef);
             string methodNameString = methodDef.Name();
             string paramsString = MethodLoggerUtil.GetParamsAsString(methodDef.GetParams());
@@ -172,7 +172,7 @@ namespace MethodLogger
 
             instructions.StartInsert();
 
-           
+
             instructions.Inst(Op.nop);
             instructions.StartBlock(); // Try #1
             instructions.StartBlock(); // Try #2
@@ -194,9 +194,9 @@ namespace MethodLogger
 
 
             instructions.StartInsert();
-            
+
             CILLabel cel = instructions.NewLabel();
-            
+
             instructions.Branch(BranchOp.leave_s, cel);
 
 
@@ -212,7 +212,7 @@ namespace MethodLogger
             {
                 instructions.IntInst(IntOp.stloc_s, istloc);
             }
-            else 
+            else
             {
                 if (istloc == 0)
                 {
@@ -232,9 +232,9 @@ namespace MethodLogger
                 }
             }
             instructions.Inst(Op.nop);
-            
 
-           
+
+
 
 
 
@@ -263,7 +263,7 @@ namespace MethodLogger
 
             instructions.CloseScope();
 
-            
+
 
             if (istloc > 4)
             {
@@ -293,7 +293,7 @@ namespace MethodLogger
             MethodLoggerUtil.GetMethodsFromClass("LogException", out LogException);
             instructions.MethInst(MethodOp.call, LogException);
             instructions.Inst(Op.nop);
-           
+
             instructions.Inst(Op.ldnull);
             //instructions.Inst(Op.stloc_0);
             if (methodDef.GetLocals() != null)
@@ -337,9 +337,9 @@ namespace MethodLogger
 
             instructions.Branch(BranchOp.leave_s, cel);
 
-           
+
             instructions.EndCatchBlock(Runtime.SystemExceptionRef, tBlk2);
-            
+
 
 
 
@@ -361,19 +361,19 @@ namespace MethodLogger
             instructions.Inst(Op.endfinally);
 
             instructions.EndFinallyBlock(tBlk1);
-        
+
             instructions.CodeLabel(cel);
 
             if (methodDef.GetLocals() != null)
             {
                 Local[] localrry = methodDef.GetLocals();
-                for (int i = localrry.Length-1; i >= 0; i--)
+                for (int i = localrry.Length - 1; i >= 0; i--)
                 {
                     if (localrry[i].type.TypeName() == methodDef.GetRetType().TypeName())
                     {
                         if (i >= 4)
                         {
-                            instructions.IntInst(IntOp.ldloc_s, i );
+                            instructions.IntInst(IntOp.ldloc_s, i);
                         }
                         else
                         {
@@ -393,14 +393,14 @@ namespace MethodLogger
                             {
                                 instructions.Inst(Op.ldloc_3);
                             }
-                          
+
                         }
                         break;
                     }
                 }
             }
-            
-            
+
+
 
 
 
