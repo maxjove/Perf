@@ -28,7 +28,29 @@ namespace ConsoleApp3
     }
     class Mateinfo
     {
+        private DataTable dtCacheItem = new DataTable();
+        private DataRow GetMedicine(string xmdm, string dxmdm)
+        {
+            DataRow drresault = null;
+            try
+            {
+                if (xmdm != "" && dxmdm != "")
+                {
+                    string query = String.Format("medicineid='{0}' and MedicineCategoryID={1}", xmdm, dxmdm);
+                    DataRow[] drs = this.dtCacheItem.Select(query);
+                    if (drs != null && drs.Length > 0)
+                    {
+                        drresault = drs[0];
+                    }
+                }
+            }
+            catch
+            {
+                return null;
+            }
 
+            return drresault;
+        }
         public string funA(string hd)
         {
             //MethodExecLogger.MethodStarted("ConsoleApp3.Mateinfo", "funA", "System.String hd2");
@@ -37,13 +59,13 @@ namespace ConsoleApp3
 
             //LogManager.WriteErrorLog(@"C:\Kingstar Winning\Log\" + this.Name, string.Format("{2}方法 {0}开始执行时间{1}", MethodInfo.GetCurrentMethod().Name, DateTime.Now.ToString(),this.Name));
             Console.WriteLine("这是方法A");
-            string strtmp = null;
-            strtmp.Trim();
-            string strtmp1 = null;
-            int itmp0 = 0;
-            itmp0.ToString();
-            bool bis = false;
-            bis.ToString();
+            //string strtmp = null;
+            //strtmp.Trim();
+            //string strtmp1 = null;
+            //int itmp0 = 0;
+            //itmp0.ToString();
+            //bool bis = false;
+            //bis.ToString();
 
             return "funA_return";
 

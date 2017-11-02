@@ -194,10 +194,10 @@ namespace MethodLogger
 
 
             instructions.StartInsert();
-            instructions.Inst(Op.nop);
-
-            CILLabel cel9 = instructions.NewLabel();
-            instructions.Branch(BranchOp.leave_s, cel9);
+            
+            CILLabel cel = instructions.NewLabel();
+            
+            instructions.Branch(BranchOp.leave_s, cel);
 
 
 
@@ -234,7 +234,7 @@ namespace MethodLogger
             instructions.Inst(Op.nop);
             
 
-            CILLabel cel = instructions.NewLabel();
+           
 
 
 
@@ -295,10 +295,46 @@ namespace MethodLogger
             instructions.Inst(Op.nop);
            
             instructions.Inst(Op.ldnull);
-            instructions.Inst(Op.stloc_0);
+            //instructions.Inst(Op.stloc_0);
+            if (methodDef.GetLocals() != null)
+            {
+                Local[] localrry = methodDef.GetLocals();
+                for (int i = localrry.Length - 1; i >= 0; i--)
+                {
+                    if (localrry[i].type.TypeName() == methodDef.GetRetType().TypeName())
+                    {
+                        if (i >= 4)
+                        {
+                            instructions.IntInst(IntOp.stloc_s, i);
+                        }
+                        else
+                        {
+                            if (i == 0)
+                            {
+                                instructions.Inst(Op.stloc_0);
+                            }
+                            else if (i == 1)
+                            {
+                                instructions.Inst(Op.stloc_1);
+                            }
+                            else if (i == 2)
+                            {
+                                instructions.Inst(Op.stloc_2);
+                            }
+                            else if (i == 3)
+                            {
+                                instructions.Inst(Op.stloc_3);
+                            }
+
+                        }
+                        break;
+                    }
+                }
+            }
 
 
-           
+
+
             instructions.Branch(BranchOp.leave_s, cel);
 
            
@@ -327,36 +363,44 @@ namespace MethodLogger
             instructions.EndFinallyBlock(tBlk1);
         
             instructions.CodeLabel(cel);
-            instructions.CodeLabel(cel9);
-            //instructions.Inst(Op.ldloc_0);
 
-            if (istloc > 4)
+            if (methodDef.GetLocals() != null)
             {
-                instructions.IntInst(IntOp.ldloc_s, istloc-1);
+                Local[] localrry = methodDef.GetLocals();
+                for (int i = localrry.Length-1; i >= 0; i--)
+                {
+                    if (localrry[i].type.TypeName() == methodDef.GetRetType().TypeName())
+                    {
+                        if (i >= 4)
+                        {
+                            instructions.IntInst(IntOp.ldloc_s, i );
+                        }
+                        else
+                        {
+                            if (i == 0)
+                            {
+                                instructions.Inst(Op.ldloc_0);
+                            }
+                            else if (i == 1)
+                            {
+                                instructions.Inst(Op.ldloc_1);
+                            }
+                            else if (i == 2)
+                            {
+                                instructions.Inst(Op.ldloc_2);
+                            }
+                            else if (i == 3)
+                            {
+                                instructions.Inst(Op.ldloc_3);
+                            }
+                          
+                        }
+                        break;
+                    }
+                }
             }
-            else
-            {
-                if (istloc == 0)
-                {
-                    instructions.Inst(Op.ldloc_0);
-                }
-                else if (istloc == 1)
-                {
-                    instructions.Inst(Op.ldloc_0);
-                }
-                else if (istloc == 2)
-                {
-                    instructions.Inst(Op.ldloc_1);
-                }
-                else if (istloc == 3)
-                {
-                    instructions.Inst(Op.ldloc_2);
-                }
-                else if (istloc == 4)
-                {
-                    instructions.Inst(Op.ldloc_3);
-                }
-            }
+            
+            
 
 
 
