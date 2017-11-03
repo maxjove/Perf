@@ -65,29 +65,29 @@ namespace MethodLogger
         {
             if (string.IsNullOrEmpty(strClassName))
                 strClassName = "MethodExecLogger";
-            string str1 = Process.GetCurrentProcess().MainModule.FileName;
+            string str1 = "MethodExecLoggerLib.dll";
             //Console.WriteLine(str1);
-           
+
             PEFile file = PEFile.ReadPEFile(str1);
             string Assemblyname = System.IO.Path.GetFileNameWithoutExtension(str1); ;
             AssemblyRef newAssemblyRef = file.MakeExternAssembly(Assemblyname);
-            ClassRef newMethodLoggerRef = TryGetMethodLoggerFromAssembly(newAssemblyRef, "MethodExecLogger");
+            ClassRef newMethodLoggerRef = TryGetMethodLoggerFromAssembly(file,newAssemblyRef, "MethodExecLogger");
             
             return GEtMethodsFromClass(newMethodLoggerRef, strMethodName, out TagetMethod);
          
         }
-        internal static ClassRef GetClass(string strClassName)
-        {
-            if (string.IsNullOrEmpty(strClassName))
-                strClassName = "Myexce";
-            string str1 = Process.GetCurrentProcess().MainModule.FileName;
-            //Console.WriteLine(str1);
-            PEFile file = PEFile.ReadPEFile(str1);
-            string Assemblyname = System.IO.Path.GetFileNameWithoutExtension(str1); ;
-            AssemblyRef newAssemblyRef = file.MakeExternAssembly(Assemblyname);
-            ClassRef newMethodLoggerRef = TryGetMethodLoggerFromAssembly(newAssemblyRef, "MethodExecLogger");
-            return newMethodLoggerRef;
-        }
+        //internal static ClassRef GetClass(string strClassName)
+        //{
+        //    if (string.IsNullOrEmpty(strClassName))
+        //        strClassName = "Myexce";
+        //    string str1 = Process.GetCurrentProcess().MainModule.FileName;
+        //    //Console.WriteLine(str1);
+        //    PEFile file = PEFile.ReadPEFile(str1);
+        //    string Assemblyname = System.IO.Path.GetFileNameWithoutExtension(str1); ;
+        //    AssemblyRef newAssemblyRef = file.MakeExternAssembly(Assemblyname);
+        //    ClassRef newMethodLoggerRef = TryGetMethodLoggerFromAssembly(newAssemblyRef, "MethodExecLogger");
+        //    return newMethodLoggerRef;
+        //}
 
         internal static bool GEtMethodsFromClass(ClassRef methodClass,string strMethodName, out Method TagetMethod)
         {
@@ -105,20 +105,20 @@ namespace MethodLogger
 
             return false;
         }
-        private static bool GEtMethodsFromClass(ClassDef methodClass, string strMethodName, out Method TagetMethod)
-        {
-            TagetMethod = null;
-            Method tmpTagetMethod = methodClass.GetMethodDesc(strMethodName);
+        //private static bool GEtMethodsFromClass(ClassDef methodClass, string strMethodName, out Method TagetMethod)
+        //{
+        //    TagetMethod = null;
+        //    Method tmpTagetMethod = methodClass.GetMethodDesc(strMethodName);
 
-            if (tmpTagetMethod != null)
-            {
-                TagetMethod = tmpTagetMethod;
-                return true;
-            }
+        //    if (tmpTagetMethod != null)
+        //    {
+        //        TagetMethod = tmpTagetMethod;
+        //        return true;
+        //    }
 
 
-            return false;
-        }
+        //    return false;
+        //}
         private static bool GetLoggerMethodsFromClass(ClassRef methodLogger, out Method startLogMethod, out Method endLogMethod)
         {
             startLogMethod = endLogMethod = null;
@@ -139,87 +139,46 @@ namespace MethodLogger
             return false;
         }
        
-        private static bool GetLoggerMethodsFromClass(ClassDef methodLogger, out Method startLogMethod, out Method endLogMethod)
-        {
-            startLogMethod = endLogMethod = null;
+        //private static bool GetLoggerMethodsFromClass(ClassDef methodLogger, out Method startLogMethod, out Method endLogMethod)
+        //{
+        //    startLogMethod = endLogMethod = null;
 
-            Method tempStartLogMethod = methodLogger.GetMethodDesc(startLogMethodName);
-            Method tempEndLogMethod = methodLogger.GetMethodDesc(endLogMethodName);
+        //    Method tempStartLogMethod = methodLogger.GetMethodDesc(startLogMethodName);
+        //    Method tempEndLogMethod = methodLogger.GetMethodDesc(endLogMethodName);
 
-            if (tempStartLogMethod != null && tempEndLogMethod != null)
-            {
-                if (CheckLogMethodParameters(tempStartLogMethod.GetParTypes()) && CheckLogMethodParameters(tempEndLogMethod.GetParTypes()))
-                {
-                    startLogMethod = tempStartLogMethod;
-                    endLogMethod = tempEndLogMethod;
-                    return true;
-                }
-            }
+        //    if (tempStartLogMethod != null && tempEndLogMethod != null)
+        //    {
+        //        if (CheckLogMethodParameters(tempStartLogMethod.GetParTypes()) && CheckLogMethodParameters(tempEndLogMethod.GetParTypes()))
+        //        {
+        //            startLogMethod = tempStartLogMethod;
+        //            endLogMethod = tempEndLogMethod;
+        //            return true;
+        //        }
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
         public static bool LocateLoggerMethods( out Method startLogMethod, out Method endLogMethod)
         {
+            string str1 = null;
+            startLogMethod = endLogMethod = null;
+            if (!System.IO.File.Exists("MethodExecLoggerLib.dll"))
+            {
+                return false;
+            }
+            str1 = "MethodExecLoggerLib.dll";
 
 
-            //PEFile file2=
-            //PEFile file = PEFile.ReadPEFile("MethodLogger");
-            string str1 = Process.GetCurrentProcess().MainModule.FileName;
-            Console.WriteLine(str1);
+
+           // Console.WriteLine(str1);
             PEFile file = PEFile.ReadPEFile(str1);
-            startLogMethod = endLogMethod = null;
-            ClassDef methodLogger = file.GetClass("MethodExecLogger");
-
-            //if (methodLogger != null)
-            //{
-            //    return GetLoggerMethodsFromClass(methodLogger, out startLogMethod, out endLogMethod);
-            //}
-            string Assemblyname = System.IO.Path.GetFileNameWithoutExtension(str1); ;
-           
-            AssemblyRef newAssemblyRef = file.MakeExternAssembly(Assemblyname);
-            ClassRef newMethodLoggerRef = TryGetMethodLoggerFromAssembly(newAssemblyRef, "MethodExecLogger");
-            if (newMethodLoggerRef != null)
-            {
-                if (GetLoggerMethodsFromClass(newMethodLoggerRef, out startLogMethod, out endLogMethod))
-                    return true;
-            }
-            return false;
-        }
-
-        public static bool LocateLoggerMethods(PEFile file, string assemblyName, string className, out Method startLogMethod, out Method endLogMethod)
-        {
-           
-            startLogMethod = endLogMethod = null;
             
-            // Check if it is in this assembly itself
-            if (file.GetThisAssembly().Name() == assemblyName)
-            {
-                ClassDef methodLogger = file.GetClass(className);
-
-                if (methodLogger != null)
-                {
-                    return GetLoggerMethodsFromClass(methodLogger, out startLogMethod, out endLogMethod);
-                }
-            }
-
-            // Check referenced assemblies
-            foreach (AssemblyRef assemblyRef in file.GetImportedAssemblies())
-            {
-                if (assemblyRef.Name() == assemblyName)
-                {
-                    ClassRef methodLoggerRef = TryGetMethodLoggerFromAssembly(assemblyRef, className);
-                    if (methodLoggerRef != null)
-                    {
-                        if (GetLoggerMethodsFromClass(methodLoggerRef, out startLogMethod, out endLogMethod))
-                            return true;
-                    }
-                }
-            }
-
-            // Not found in this assembly or referenced assemblies. Try loading given assembly and adding it as reference
-            AssemblyRef newAssemblyRef = file.MakeExternAssembly(assemblyName);
-            ClassRef newMethodLoggerRef = TryGetMethodLoggerFromAssembly(newAssemblyRef, className);
+           
+            string Assemblyname = System.IO.Path.GetFileNameWithoutExtension(str1); ;
+            
+            AssemblyRef newAssemblyRef = file.MakeExternAssembly(Assemblyname);
+            ClassRef newMethodLoggerRef = TryGetMethodLoggerFromAssembly(file,newAssemblyRef, "MethodExecLogger");
             if (newMethodLoggerRef != null)
             {
                 if (GetLoggerMethodsFromClass(newMethodLoggerRef, out startLogMethod, out endLogMethod))
@@ -228,23 +187,64 @@ namespace MethodLogger
             return false;
         }
 
-        private static ClassRef TryGetMethodLoggerFromAssembly(AssemblyRef assemblyRef, string className)
-        {
-            string fileName = "";
-            if (assemblyRef.Name().ToLower().EndsWith(".dll")|| assemblyRef.Name().ToLower().EndsWith(".exe"))
-                fileName = assemblyRef.Name();
-            else 
-             fileName = assemblyRef.Name() + ".exe";
-            //Console.WriteLine("TryGetMethodLoggerFromAssembly ->" + fileName);
-            if (!System.IO.File.Exists(fileName))
-            {
-                Console.WriteLine(fileName + " not present in current directory. Skipping it in search");
-                return null;
-            }
+        //public static bool LocateLoggerMethods(PEFile file, string assemblyName, string className, out Method startLogMethod, out Method endLogMethod)
+        //{
            
-               
+        //    startLogMethod = endLogMethod = null;
+            
+        //    // Check if it is in this assembly itself
+        //    if (file.GetThisAssembly().Name() == assemblyName)
+        //    {
+        //        ClassDef methodLogger = file.GetClass(className);
 
-            PEFile refFile = PEFile.ReadPEFile(fileName);
+        //        if (methodLogger != null)
+        //        {
+        //            return GetLoggerMethodsFromClass(methodLogger, out startLogMethod, out endLogMethod);
+        //        }
+        //    }
+
+        //    // Check referenced assemblies
+        //    foreach (AssemblyRef assemblyRef in file.GetImportedAssemblies())
+        //    {
+        //        if (assemblyRef.Name() == assemblyName)
+        //        {
+        //            ClassRef methodLoggerRef = TryGetMethodLoggerFromAssembly(assemblyRef, className);
+        //            if (methodLoggerRef != null)
+        //            {
+        //                if (GetLoggerMethodsFromClass(methodLoggerRef, out startLogMethod, out endLogMethod))
+        //                    return true;
+        //            }
+        //        }
+        //    }
+
+        //    // Not found in this assembly or referenced assemblies. Try loading given assembly and adding it as reference
+        //    AssemblyRef newAssemblyRef = file.MakeExternAssembly(assemblyName);
+        //    ClassRef newMethodLoggerRef = TryGetMethodLoggerFromAssembly(newAssemblyRef, className);
+        //    if (newMethodLoggerRef != null)
+        //    {
+        //        if (GetLoggerMethodsFromClass(newMethodLoggerRef, out startLogMethod, out endLogMethod))
+        //            return true;
+        //    }
+        //    return false;
+        //}
+
+        private static ClassRef TryGetMethodLoggerFromAssembly(PEFile pef,AssemblyRef assemblyRef, string className)
+        {
+            //string fileName = "";
+            //if (assemblyRef.Name().ToLower().EndsWith(".dll")|| assemblyRef.Name().ToLower().EndsWith(".exe"))
+            //    fileName = assemblyRef.Name();
+            //else 
+            // fileName = assemblyRef.Name() + ".exe";
+            ////Console.WriteLine("TryGetMethodLoggerFromAssembly ->" + fileName);
+            //if (!System.IO.File.Exists(fileName))
+            //{
+            //    Console.WriteLine(fileName + " not present in current directory. Skipping it in search");
+            //    return null;
+            //}
+
+
+
+            PEFile refFile = pef;//PEFile.ReadPEFile(fileName);
             ClassDef methodLogger = refFile.GetClass(className);
 
             if (methodLogger != null)

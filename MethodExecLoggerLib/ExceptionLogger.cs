@@ -6,10 +6,9 @@ using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading;
-using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.IO;
-
+using System.Windows.Forms;
 
 namespace MethodLogger
 {
@@ -110,13 +109,13 @@ namespace MethodLogger
 
 
 
-        public static void LogException(Exception exception)
+        public static string  LogException(Exception exception)
         {
             try
             {
 
                 if (exception == null)
-                    return;
+                    return null;
                
 
                 StringBuilder error = new StringBuilder();
@@ -169,12 +168,12 @@ namespace MethodLogger
                 //    }
                 //}
 
-                Console.WriteLine(error.ToString());
+               return error.ToString();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("LOG发生异常 - " + ex.Message);
-                //throw;
+                return null;
             }
         }
     }

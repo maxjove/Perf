@@ -7,7 +7,7 @@ namespace MethodLogger
 {
     class Program
     {
-        static ClassFilter classFilter;
+        //static ClassFilter classFilter;
         static void Main(string[] args)
         {
             Environment.ExitCode = 1;
@@ -29,7 +29,7 @@ namespace MethodLogger
                 return;
             }
 
-            classFilter = new ClassFilter(includeList, excludeList);
+           // classFilter = new ClassFilter(includeList, excludeList);
 
             if (Directory.Exists(target))
             {
@@ -142,9 +142,7 @@ namespace MethodLogger
                 if (directoryName != null)
                     Environment.CurrentDirectory = directoryName;
             }
-            //QUT.PERWAPI.UIntConst unst = new UIntConst()
-            //unst.GetULongAsLong();
-            //QUT.PERWAPI.per
+           
            
             PEFile file = PEFile.ReadPEFile(inputFile);
 
@@ -164,8 +162,8 @@ namespace MethodLogger
             });
 
             file.WritePEFile(false);
-            Console.WriteLine("Processe end ,any key exit");
-            Console.ReadKey();
+            //Console.WriteLine("Processe end ,any key exit");
+            //Console.ReadKey();
 
         }
 
@@ -176,8 +174,8 @@ namespace MethodLogger
             //if (classDef.Name() == methodLoggerClassName)
             //    return;
 
-            if (classFilter.PassesFilter(classDef) == false) 
-                return;
+            //if (classFilter.PassesFilter(classDef) == false) 
+            //    return;
 
             foreach (NestedClassDef c in classDef.GetNestedClasses())
             {

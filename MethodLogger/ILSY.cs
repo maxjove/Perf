@@ -164,6 +164,7 @@ namespace MethodLogger
             {
                 methodDef.SetMaxStack(3);
             }
+            
             string strGuid = Guid.NewGuid().ToString();
             CILInstructions instructions = methodDef.GetCodeBuffer();
             if (instructions == null)
